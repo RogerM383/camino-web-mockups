@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camino — Who We Are (mid-fi mockup)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'Geist';
+      src: url('fonts/GeistVF.woff') format('woff');
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+  <style>
+    /* ─── Design Tokens ───────────────────────────────── */
+    :root {
+      --bg:            #FAF7F3;
+      --fg:            #3D342E;
+      --card:          #FDF9F4;
+      --card-muted:    #F7F1EA;
+      --secondary:     #F3EBE1;
+      --accent:        #F4EDE0;
+      --primary:       #A17E90;
+      --primary-hover: #8B6B7D;
+      --border:        #E7DDD2;
+      --muted-fg:      #6D6357;
+      --sidebar-gold:  #D9B98E;
+      --teal:          #4BA5A5;
+      --orange:        #DA9C59;
+      --coral:         #E88D84;
+      --radius:        8px;
+    }
+
+    /* ─── Reset & Base ────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Manrope', sans-serif; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      font-size: 16px;
+      line-height: 1.625;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Layout helpers ──────────────────────────────── */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ─── HEADER ──────────────────────────────────────── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 247, 243, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      width: 100%;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+      color: var(--fg);
+    }
+
+    .logo svg {
+      height: 22px;
+      width: auto;
+      display: block;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      flex: 1;
+      padding: 0 32px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted-fg);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.15s;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    nav a:hover { color: var(--fg); }
+
+    nav a.active {
+      color: var(--fg);
+      position: relative;
+    }
+
+    nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0; right: 0;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    .btn-login {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
+      background: transparent;
+      padding: 7px 18px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      letter-spacing: 0.01em;
+      font-family: 'Manrope', sans-serif;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+
+    .btn-login:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* ─── HERO TEXT-ONLY ──────────────────────────────── */
+    .page-hero {
+      padding: 80px 0 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-hero-inner {
+      max-width: 760px;
+    }
+
+    .page-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(44px, 6vw, 72px);
+      font-weight: 500;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--fg);
+    }
+
+    /* ─── PROSE NARRATIVE ─────────────────────────────── */
+    .prose-section {
+      padding: 72px 0;
+    }
+
+    .prose-inner {
+      max-width: 680px;
+    }
+
+    .prose-inner p {
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--fg);
+      margin-bottom: 24px;
+    }
+
+    .prose-inner p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose-inner h3 {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--fg);
+      margin-bottom: 20px;
+      margin-top: 8px;
+    }
+
+    .prose-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 56px 0;
+      max-width: 680px;
+    }
+
+    /* ─── FOUNDER SIGNATURE ───────────────────────────── */
+    .founder-sig {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      max-width: 680px;
+    }
+
+    .founder-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .founder-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .founder-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--fg);
+    }
+
+    .founder-role {
+      font-size: 13px;
+      color: var(--muted-fg);
+    }
+
+    /* ─── AUTHOR CARD (nuevo) ─────────────────────────── */
+    .author-section {
+      background: var(--secondary);
+      padding: 72px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .author-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+      align-items: center;
+      max-width: 680px;
+    }
+
+    .author-photo {
+      aspect-ratio: 3 / 4;
+      background: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--muted-fg);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .author-photo svg {
+      opacity: 0.25;
+    }
+
+    .author-bio h3 {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--fg);
+      margin-bottom: 6px;
+    }
+
+    .author-bio .author-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .author-bio p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--muted-fg);
+    }
+
+    /* ─── GET IN TOUCH ────────────────────────────────── */
+    .contact-strip {
+      padding: 72px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-strip-inner {
+      max-width: 680px;
+    }
+
+    .contact-strip h2 {
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      margin-bottom: 32px;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius);
+      background: var(--accent);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-text {
+      font-size: 15px;
+      color: var(--muted-fg);
+    }
+
+    .contact-text a {
+      color: var(--fg);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-text a:hover {
+      color: var(--primary);
+    }
+
+    .contact-placeholder {
+      font-style: italic;
+      opacity: 0.5;
+    }
+
+    .social-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius);
+      background: var(--accent);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted-fg);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .social-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    .site-footer {
+      background: var(--secondary);
+      border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 64px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .footer-brand .logo {
+      display: flex;
+      margin-bottom: 12px;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--muted-fg);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted-fg);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul a {
+      font-size: 14px;
+      color: var(--fg);
+      text-decoration: none;
+      opacity: 0.75;
+      transition: opacity 0.15s;
+    }
+
+    .footer-col ul a:hover { opacity: 1; }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--muted-fg);
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-legal a {
+      font-size: 13px;
+      color: var(--muted-fg);
+      text-decoration: none;
+    }
+
+    /* ─── BADGE ───────────────────────────────────────── */
+    .mockup-badge {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--fg);
+      color: var(--bg);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      border-radius: 100px;
+      opacity: 0.7;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="home-midfi.html" class="logo">
+        <svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="2" y="24" font-family="Geist, -apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="currentColor">Camino</text>
+        </svg>
+      </a>
+      <nav>
+        <a href="home-midfi.html">home</a>
+        <a href="home-midfi.html#what-we-do">what we do</a>
+        <a href="#" class="active">who we are</a>
+        <a href="connect-midfi.html">connect</a>
+      </nav>
+      <a href="#" class="btn-login">Log in</a>
+    </div>
+  </header>
+
+  <!-- ══ HERO ════════════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <p class="page-eyebrow">who we are</p>
+        <h1>our story</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ NARRATIVE ════════════════════════════════════════ -->
+  <section class="prose-section">
+    <div class="container">
+      <div class="prose-inner">
+        <p>I grew up believing learning was supposed to be fun. Mr. Cloke, my sixth-grade teacher, gave me that gift. He instilled the thrill of curiosity pulling me deeper — and that set a tone I've been chasing ever since. He did it through options. Over the course of the week we were to watch a video. Read a short essay. Listen to this interview. All on the same topic. We came together to discuss not just what we learned, but what we remembered most from each version. I thought that was really cool.</p>
+
+        <p>By Junior High School that spark was gone. Learning was suddenly about taking tests to measure how much we had learned. As such, lessons became more and more about passing the test than it was about gathering knowledge on a topic. Learning became rote. All I knew was that learning was no longer fun.</p>
+
+        <p>Fast forward to 10 years ago, I was leading a group of L&amp;D professionals in a flipped classroom style classroom. We watched training videos and then met to discuss how we would apply them in our jobs. A very reasonable approach, especially for L&amp;D professionals.</p>
+
+        <p>I'll never forget that moment. Over time, learning had become a system of one-size-fits-all checkboxes. Watch this video. Read this article. Take this quiz to prove you were paying attention. The joy was gone.</p>
+
+        <p>That realization stayed with me. I felt that learning wasn't supposed to feel like that.</p>
+
+        <hr class="prose-divider" />
+
+        <h3>The Shift</h3>
+
+        <p>When AI burst onto the scene, I paid attention. Would we see a learning revolution or would it be more of the same, only faster? More dull lessons, now at scale.</p>
+
+        <p>But what if we used AI differently? What if it wasn't about more content, but instead about more choice?</p>
+
+        <p>I started picturing a kind of learning I'd always wished for: one where you decide how you want to engage. A video. A podcast. An article. Even the option to choose the voice you want to hear — funny, serious, sharp, or playful. And the freedom to switch whenever you want.</p>
+
+        <p>What learning was like in 6th grade and what it should have been all along.</p>
+
+        <hr class="prose-divider" />
+
+        <h3>Why Camino Exists</h3>
+
+        <p>Camino is my answer to that circle of glazed-over learners, to my own moments of disengagement, to every time curiosity was dulled by the system.</p>
+
+        <p>It's a declaration that learning doesn't have to be standardized or soulless. It can adapt. It can surprise. It can meet people exactly where they are.</p>
+
+        <p>Camino exists to reimagine what learning can be — not a transaction, but a living experience. Because when learning comes alive, it doesn't just change what you know. It changes what you believe is possible.</p>
+
+        <div class="founder-sig">
+          <div class="founder-avatar">👤</div>
+          <div class="founder-info">
+            <span class="founder-name">Scott Milrad</span>
+            <span class="founder-role">Founder, Camino Learning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ AUTHOR CARD (nuevo) ══════════════════════════════ -->
+  <section class="author-section">
+    <div class="container">
+      <div class="author-card">
+        <div class="author-photo">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="15" r="8" fill="#3D342E"/>
+            <path d="M4 36c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#3D342E" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Photo
+        </div>
+        <div class="author-bio">
+          <h3>Scott Milrad</h3>
+          <p class="author-title">Founder &amp; CEO</p>
+          <p>Learning strategist, educator, and entrepreneur with over 20 years reimagining how people grow. Scott built Camino to close the gap between how learning feels and how transformative it can actually be.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ GET IN TOUCH ═════════════════════════════════════ -->
+  <section class="contact-strip">
+    <div class="container">
+      <div class="contact-strip-inner">
+        <h2>Get in touch</h2>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4l6 5 6-5M2 3h12a1 1 0 011 1v8a1 1 0 01-1 1H2a1 1 0 01-1-1V4a1 1 0 011-1z" stroke="#6D6357" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <p class="contact-text">
+              <a href="mailto:hello@caminolearning.com">hello@caminolearning.com</a>
+            </p>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3h2l1 3-1.5 1.5a10 10 0 004 4L10 10l3 1v2a1 1 0 01-1 1A11 11 0 012 4a1 1 0 011-1z" stroke="#6D6357" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <p class="contact-text contact-placeholder">Phone — pending</p>
+          </div>
+        </div>
+        <div class="social-row">
+          <a href="#" class="social-btn" title="LinkedIn">in</a>
+          <a href="#" class="social-btn" title="Twitter/X">𝕏</a>
+          <a href="#" class="social-btn" title="Instagram">ig</a>
+          <a href="#" class="social-btn" title="Facebook">f</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="home-midfi.html" class="logo">
+            <svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <text x="2" y="24" font-family="Geist, -apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="currentColor">Camino</text>
+            </svg>
+          </a>
+          <p class="footer-tagline">Empower. Engage. Evolve.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="home-midfi.html#what-we-do">What We Do</a></li>
+            <li><a href="#">Who We Are</a></li>
+            <li><a href="connect-midfi.html">Connect</a></li>
+            <li><a href="#">Tour Camino</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@caminolearning.com">hello@caminolearning.com</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Camino. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mockup-badge">Mid-fi · Who We Are</div>
+
+</body>
+</html>
