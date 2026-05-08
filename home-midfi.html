@@ -140,6 +140,84 @@
       border-radius: 2px;
     }
 
+    /* ─── NAV DROPDOWN ───────────────────────────────── */
+    .nav-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-dropdown-trigger {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted-fg);
+      letter-spacing: 0.01em;
+      cursor: default;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      user-select: none;
+      transition: color 0.15s;
+    }
+
+    .nav-dropdown-trigger::after {
+      content: '';
+      display: inline-block;
+      width: 0; height: 0;
+      border-left: 3.5px solid transparent;
+      border-right: 3.5px solid transparent;
+      border-top: 4px solid currentColor;
+      opacity: 0.5;
+      margin-top: 1px;
+    }
+
+    .nav-item:hover .nav-dropdown-trigger { color: var(--fg); }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 6px 6px;
+      min-width: 220px;
+      box-shadow: 0 8px 24px rgba(61,52,46,0.08), 0 2px 6px rgba(61,52,46,0.04);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(-4px);
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .nav-item:hover .nav-dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .nav-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      font-family: 'Manrope', sans-serif;
+      transition: background 0.12s;
+    }
+
+    .nav-dropdown-item:hover { background: var(--secondary); }
+
+    .nav-dropdown-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
     .btn-login {
       font-size: 13px;
       font-weight: 500;
@@ -375,6 +453,36 @@
     .persona-icon--a { background: rgba(75,165,165,0.12); }
     .persona-icon--b { background: rgba(218,156,89,0.12); }
     .persona-icon--c { background: rgba(161,126,144,0.12); }
+    .persona-icon--d { background: rgba(232,141,132,0.12); }
+
+    /* ─── CARD GRID (2×2) ────────────────────────────── */
+    .card-grid-2x2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    /* ─── PERSONA CARD (linked) ──────────────────────── */
+    .card-persona--link {
+      text-decoration: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+    }
+
+    .card-persona--link:hover {
+      border-color: var(--primary);
+      box-shadow: 0 2px 12px rgba(161,126,144,0.12);
+    }
+
+    /* ─── CARD CTA ────────────────────────────────────── */
+    .card-cta {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 8px;
+      display: block;
+      letter-spacing: 0.02em;
+    }
 
     .card-persona h3 {
       font-size: 17px;
@@ -404,6 +512,119 @@
       width: fit-content;
       transition: color 0.15s;
     }
+
+    /* ─── FEATURE EXPLORER ────────────────────────────── */
+    .explorer-header {
+      margin-bottom: 48px;
+    }
+
+    .explorer-header h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      line-height: 1.1;
+      margin-bottom: 0;
+    }
+
+    .explorer-body {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .explorer-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .exp-tab {
+      padding: 14px 16px;
+      border-left: 2px solid transparent;
+      cursor: pointer;
+      transition: border-color 0.2s, opacity 0.15s;
+    }
+
+    .exp-tab:hover { opacity: 0.7; }
+
+    .exp-tab.active {
+      border-left-color: var(--primary);
+    }
+
+    .exp-tab-num { display: none; }
+
+    .exp-tab-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--muted-fg);
+      line-height: 1.3;
+      transition: color 0.2s;
+    }
+
+    .exp-tab.active .exp-tab-title { color: var(--fg); }
+
+    .exp-tab-progress {
+      height: 1.5px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-top: 12px;
+      display: none;
+      overflow: hidden;
+    }
+
+    .exp-tab.active .exp-tab-progress { display: block; }
+
+    .exp-tab-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 2px;
+      transition: width linear;
+    }
+
+    .explorer-content {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .exp-content-title {
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .exp-content-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--muted-fg);
+      flex: 1;
+    }
+
+    .exp-content-visual {
+      margin-top: 32px;
+      height: 200px;
+      border-radius: 12px;
+      background: var(--accent);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .exp-vis-block { border-radius: 6px; }
+
+    @keyframes expFadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .exp-fade { animation: expFadeUp 0.3s ease; }
 
     /* ─── PRODUCT SHOWCASE ────────────────────────────── */
     .product-showcase {
@@ -598,6 +819,27 @@
       <nav>
         <a href="home-midfi.html" class="active">home</a>
         <a href="#what-we-do">what we do</a>
+        <div class="nav-item">
+          <span class="nav-dropdown-trigger">who's using camino?</span>
+          <div class="nav-dropdown-menu">
+            <a href="for-individuals-midfi.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-dot" style="background:#DA9C59"></span>
+              Individual Learners
+            </a>
+            <a href="for-teams-midfi.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-dot" style="background:#4BA5A5"></span>
+              Organizations & Teams
+            </a>
+            <a href="for-trainers-midfi.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-dot" style="background:#A17E90"></span>
+              Trainers & Consultants
+            </a>
+            <a href="for-educators-midfi.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-dot" style="background:#E88D84"></span>
+              Educators & Students
+            </a>
+          </div>
+        </div>
         <a href="who-we-are-midfi.html">who we are</a>
         <a href="connect-midfi.html">connect</a>
       </nav>
@@ -643,43 +885,104 @@
   <!-- ══ WHAT WE DO ═══════════════════════════════════════ -->
   <section id="what-we-do" class="section-wrapper">
     <div class="container">
-      <div class="section-intro">
-        <p class="section-eyebrow">what we do</p>
-        <h2>Learning that bends to you,<br>not the other way around</h2>
-      </div>
-      <div class="card-grid-4">
-        <div class="card-feature">
-          <div class="card-icon card-icon--teal">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M9 3l6 6-6 6" stroke="#4BA5A5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>Easy to build</h3>
-          <p>No more months of course creation or cobbling together content from static libraries that never quite fit. Camino makes it simple to design learning that feels custom — without the heavy lift.</p>
+      <div class="explorer">
+        <div class="explorer-header">
+          <p class="section-eyebrow">what we do</p>
+          <h2>Learning that bends to you,<br>not the other way around</h2>
         </div>
-        <div class="card-feature">
-          <div class="card-icon card-icon--orange">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6" stroke="#DA9C59" stroke-width="1.75"/><path d="M9 6v3l2 2" stroke="#DA9C59" stroke-width="1.75" stroke-linecap="round"/></svg>
-          </div>
-          <h3>Fast to launch</h3>
-          <p>Go live in minutes, not months. Whether you're rolling out individual skill development, building team training, or company-wide training, Camino scales easily and instantly across your org.</p>
-        </div>
-        <div class="card-feature">
-          <div class="card-icon card-icon--coral">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3l1.5 4h4l-3.2 2.4 1.2 4L9 11l-3.5 2.4 1.2-4L3.5 7h4L9 3z" stroke="#E88D84" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>Fun to learn</h3>
-          <p>When people have fun with their learning they actually use it. Engagement rises, completion rates soar, and retention improves. Finally, a chance to make learning effective and fun.</p>
-        </div>
-        <div class="card-feature">
-          <div class="card-icon card-icon--mauve">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="7" r="3.5" stroke="#A17E90" stroke-width="1.75"/><path d="M3 15c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#A17E90" stroke-width="1.75" stroke-linecap="round"/></svg>
-          </div>
-          <h3>Designed by Educators, Powered by AI</h3>
-          <p>Learning designed by people who really get learning, then injected with AI to reimagine what actual learning transformation can be. Universal Design for Learning meets the future.</p>
+        <div class="explorer-body">
+          <div class="explorer-tabs" id="exp-tabs"></div>
+          <div class="explorer-content" id="exp-content"></div>
         </div>
       </div>
-      <a href="#" class="inline-cta">Learn more</a>
+
     </div>
   </section>
+
+  <script>
+    (function() {
+      var features = [
+        {
+          num: "01", title: "Easy to build", accent: "#4BA5A5",
+          body: "No more months of course creation or cobbling together content from static libraries that never quite fit. Camino makes it simple to design learning that feels custom — without the heavy lift. Learning pathways built for humans, not for checklists.",
+          visuals: [{w:28,h:44},{w:28,h:60},{w:28,h:76},{w:28,h:52}]
+        },
+        {
+          num: "02", title: "Fast to launch", accent: "#DA9C59",
+          body: "Go live in minutes, not months. Whether you're rolling out individual skill development, building team training, or company-wide training, Camino scales easily and instantly across your org. On-demand for the organization, personalized for every learner.",
+          visuals: [{w:20,h:20,r:"50%"},{w:36,h:36,r:"50%"},{w:56,h:56,r:"50%"},{w:36,h:36,r:"50%"},{w:20,h:20,r:"50%"}]
+        },
+        {
+          num: "03", title: "Fun to learn", accent: "#E88D84",
+          body: "When people have fun with their learning they actually use it. Engagement rises, completion rates soar, and retention improves. Finally, a chance to make learning effective and fun — not a checkbox, but an experience worth coming back to.",
+          visuals: [{w:44,h:44,r:"50%"},{w:62,h:62,r:"50%"},{w:44,h:44,r:"50%"}]
+        },
+        {
+          num: "04", title: "Designed by Educators, Powered by AI", accent: "#A17E90",
+          body: "Learning designed by people who really get learning — then injected with AI to reimagine what actual learning transformation can be. Think Universal Design for Learning meets the future, without the million-dollar graphics budget.",
+          visuals: [{w:76,h:36},{w:76,h:36},{w:76,h:36}]
+        }
+      ];
+
+      var current = 0;
+      var timer = null;
+      var DURATION = 5000;
+
+      function hex2rgba(hex, a) {
+        var r = parseInt(hex.slice(1,3),16);
+        var g = parseInt(hex.slice(3,5),16);
+        var b = parseInt(hex.slice(5,7),16);
+        return "rgba("+r+","+g+","+b+","+a+")";
+      }
+
+      function renderTabs() {
+        document.getElementById("exp-tabs").innerHTML = features.map(function(f, i) {
+          return '<div class="exp-tab'+(i===current?" active":"")+'" onclick="expGoTo('+i+')">'
+            +'<div class="exp-tab-title">'+f.title+'</div>'
+            +'<div class="exp-tab-progress">'
+            +'<div class="exp-tab-fill" id="exp-fill-'+i+'" style="background:'+f.accent+'"></div>'
+            +'</div></div>';
+        }).join("");
+      }
+
+      function renderContent(i) {
+        var f = features[i];
+        var vis = f.visuals.map(function(v) {
+          return '<div class="exp-vis-block" style="width:'+v.w+'px;height:'+v.h+'px;background:'+hex2rgba(f.accent,0.25)+';border-radius:'+(v.r||"6px")+'"></div>';
+        }).join("");
+        document.getElementById("exp-content").innerHTML =
+          '<div class="exp-fade">'
+          +'<div class="exp-content-title">'+f.title+'</div>'
+          +'<div class="exp-content-body">'+f.body+'</div>'
+          +'<div class="exp-content-visual">'+vis+'</div>'
+          +'</div>';
+      }
+
+      function startProgress(i) {
+        var fill = document.getElementById("exp-fill-"+i);
+        if (!fill) return;
+        fill.style.transition = "none";
+        fill.style.width = "0%";
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            fill.style.transition = "width "+DURATION+"ms linear";
+            fill.style.width = "100%";
+          });
+        });
+      }
+
+      window.expGoTo = function(i) {
+        clearTimeout(timer);
+        current = i;
+        renderTabs();
+        renderContent(i);
+        startProgress(i);
+        timer = setTimeout(function() { window.expGoTo((current+1)%features.length); }, DURATION);
+      };
+
+      window.expGoTo(0);
+    })();
+  </script>
 
   <!-- ══ WHO'S USING CAMINO ════════════════════════════════ -->
   <section class="section-wrapper--secondary">
@@ -689,22 +992,39 @@
         <h2>The power of Camino is in its flexibility</h2>
         <p>Look how people are using it.</p>
       </div>
-      <div class="card-grid-3">
-        <div class="card-persona">
-          <div class="persona-icon persona-icon--a">🏢</div>
+      <div class="card-grid-2x2">
+        <a href="for-individuals-midfi.html" class="card-persona card-persona--link">
+          <div class="persona-icon persona-icon--b">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="#DA9C59" stroke-width="1.5"/><path d="M3 19c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#DA9C59" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Individual Learners</h3>
+          <p>Your learning, your way. Choose your format — video, podcast, article, AI conversation — and switch whenever you want. Camino adapts to how you think, not the other way around.</p>
+          <span class="card-cta">Explore →</span>
+        </a>
+        <a href="for-teams-midfi.html" class="card-persona card-persona--link">
+          <div class="persona-icon persona-icon--a">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="3" stroke="#4BA5A5" stroke-width="1.5"/><circle cx="15" cy="8" r="3" stroke="#4BA5A5" stroke-width="1.5"/><path d="M1 19c0-3.9 3.1-7 7-7M14 12c3.9 0 7 3.1 7 7" stroke="#4BA5A5" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
           <h3>Organizations & Teams</h3>
-          <p>Organizations use Camino to create training that's fast, flexible, and feels like a perk — giving employees a dynamic way to build both professional and personal skills. Learning pathways can be launched in minutes and shared with individuals, teams, or the whole organization.</p>
-        </div>
-        <div class="card-persona">
-          <div class="persona-icon persona-icon--b">🎯</div>
-          <h3>Trainers</h3>
-          <p>With Camino, trainers design and launch custom training in minutes. Want more impact? Upload your existing articles, content, or even your book — Camino builds from your vision, strategy, and voice.</p>
-        </div>
-        <div class="card-persona">
-          <div class="persona-icon persona-icon--c">📚</div>
-          <h3>Teachers & Students</h3>
-          <p>Teachers are using Camino to spin up curricula instantly, giving learners the freedom to engage their own way. And students? They're discovering Camino as the study tool that adapts to them — making learning feel less like a grind and more like a superpower.</p>
-        </div>
+          <p>Create training that's fast, flexible, and feels like a perk. Launch learning pathways in minutes and share them with individuals, teams, or the whole organization.</p>
+          <span class="card-cta">Explore →</span>
+        </a>
+        <a href="for-trainers-midfi.html" class="card-persona card-persona--link">
+          <div class="persona-icon persona-icon--c">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="4" width="16" height="12" rx="2" stroke="#A17E90" stroke-width="1.5"/><path d="M8 20h6M11 16v4" stroke="#A17E90" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Trainers & Consultants</h3>
+          <p>Design and launch custom training in minutes. Upload your existing content, your articles, even your book — Camino builds from your vision, strategy, and voice.</p>
+          <span class="card-cta">Explore →</span>
+        </a>
+        <a href="for-educators-midfi.html" class="card-persona card-persona--link">
+          <div class="persona-icon persona-icon--d">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3L2 8l9 5 9-5-9-5z" stroke="#E88D84" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 12l9 5 9-5M2 16l9 5 9-5" stroke="#E88D84" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Educators & Students</h3>
+          <p>Spin up curricula instantly and give learners the freedom to engage their own way. Students discover a study tool that adapts to them — making learning feel like a superpower.</p>
+          <span class="card-cta">Explore →</span>
+        </a>
       </div>
     </div>
   </section>

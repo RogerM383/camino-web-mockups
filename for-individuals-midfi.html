@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camino — For Individual Learners (mid-fi mockup)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'Geist';
+      src: url('fonts/GeistVF.woff') format('woff');
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+  <style>
+    /* ─── Design Tokens ───────────────────────────────── */
+    :root {
+      --bg:            #FAF7F3;
+      --fg:            #3D342E;
+      --card:          #FDF9F4;
+      --card-muted:    #F7F1EA;
+      --secondary:     #F3EBE1;
+      --accent:        #F4EDE0;
+      --primary:       #A17E90;
+      --primary-hover: #8B6B7D;
+      --border:        #E7DDD2;
+      --muted-fg:      #6D6357;
+      --teal:          #4BA5A5;
+      --orange:        #DA9C59;
+      --coral:         #E88D84;
+      --persona-color: #DA9C59;
+      --persona-bg:    rgba(218,156,89,0.10);
+      --radius:        8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Manrope', sans-serif; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      font-size: 16px;
+      line-height: 1.625;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+    .section-wrapper { padding: 96px 0; }
+    .section-wrapper--secondary { background: var(--secondary); padding: 96px 0; }
+
+    /* ─── HEADER ──────────────────────────────────────── */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,247,243,0.85);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      height: 64px; display: flex; align-items: center;
+      padding: 0 40px; width: 100%;
+    }
+    .header-inner { display: flex; align-items: center; width: 100%; }
+    .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; color: var(--fg); }
+    .logo svg { height: 22px; width: auto; display: block; }
+    nav { display: flex; align-items: center; justify-content: center; gap: 36px; flex: 1; padding: 0 32px; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--muted-fg); text-decoration: none; letter-spacing: 0.01em; transition: color 0.15s; }
+    nav a:hover, nav a.active { color: var(--fg); }
+    .btn-login {
+      font-size: 13px; font-weight: 500; color: var(--primary);
+      border: 1.5px solid var(--primary); background: transparent;
+      padding: 7px 18px; border-radius: var(--radius); cursor: pointer;
+      text-decoration: none; transition: background 0.15s, color 0.15s;
+      flex-shrink: 0; margin-left: auto;
+    }
+    .btn-login:hover { background: var(--primary); color: #fff; }
+
+    /* ─── NAV DROPDOWN ───────────────────────────────── */
+    .nav-item { position: relative; display: flex; align-items: center; }
+    .nav-dropdown-trigger {
+      font-size: 14px; font-weight: 500; color: var(--muted-fg);
+      letter-spacing: 0.01em; cursor: default;
+      display: flex; align-items: center; gap: 5px;
+      user-select: none; transition: color 0.15s;
+    }
+    .nav-dropdown-trigger::after {
+      content: ''; display: inline-block; width: 0; height: 0;
+      border-left: 3.5px solid transparent; border-right: 3.5px solid transparent;
+      border-top: 4px solid currentColor; opacity: 0.5; margin-top: 1px;
+    }
+    .nav-item:hover .nav-dropdown-trigger { color: var(--fg); }
+    .nav-dropdown-menu {
+      position: absolute; top: calc(100% + 14px); left: 50%;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 6px; min-width: 220px;
+      box-shadow: 0 8px 24px rgba(61,52,46,0.08), 0 2px 6px rgba(61,52,46,0.04);
+      top: 100%; padding: 14px 6px 6px;
+      opacity: 0; pointer-events: none;
+      transform: translateX(-50%) translateY(-4px);
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .nav-item:hover .nav-dropdown-menu { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-dropdown-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: 6px; text-decoration: none;
+      color: var(--fg); font-size: 14px; font-weight: 500;
+      font-family: 'Manrope', sans-serif; transition: background 0.12s;
+    }
+    .nav-dropdown-item:hover { background: var(--secondary); }
+    .nav-dropdown-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ─── PAGE HERO ───────────────────────────────────── */
+    .page-hero {
+      padding: 80px 0 72px;
+      border-bottom: 1px solid var(--border);
+    }
+    .persona-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--persona-color);
+      margin-bottom: 24px;
+    }
+    .persona-eyebrow-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--persona-color);
+    }
+    .page-hero h1 {
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: var(--fg);
+      max-width: 720px;
+      margin-bottom: 24px;
+    }
+    .page-hero-lead {
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--muted-fg);
+      max-width: 560px;
+      margin-bottom: 40px;
+    }
+
+    .btn-primary {
+      display: inline-block; background: var(--primary); color: #fff;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 14px 32px;
+      border-radius: var(--radius); text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: var(--primary-hover); }
+
+    .btn-secondary {
+      display: inline-block; background: transparent; color: var(--fg);
+      font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 14px 32px;
+      border-radius: var(--radius); text-decoration: none;
+      border: 1.5px solid var(--border); margin-left: 12px;
+      transition: border-color 0.15s;
+    }
+    .btn-secondary:hover { border-color: var(--fg); }
+
+    /* ─── SECTION INTRO ───────────────────────────────── */
+    .section-intro { margin-bottom: 56px; }
+    .section-intro h2 {
+      font-size: clamp(28px, 3.5vw, 44px); font-weight: 500;
+      letter-spacing: -0.02em; color: var(--fg); margin-bottom: 12px;
+    }
+    .section-intro p { font-size: 17px; color: var(--muted-fg); max-width: 560px; line-height: 1.6; }
+    .section-eyebrow {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--primary); margin-bottom: 16px;
+    }
+
+    /* ─── BENEFIT GRID ────────────────────────────────── */
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .benefit-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .benefit-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--persona-bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .benefit-card h3 { font-size: 16px; font-weight: 600; color: var(--fg); line-height: 1.3; }
+    .benefit-card p { font-size: 14px; line-height: 1.7; color: var(--muted-fg); }
+
+    /* ─── HOW IT WORKS ────────────────────────────────── */
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 720px;
+    }
+    .step-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 24px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step-item:first-child { padding-top: 0; }
+    .step-item:last-child { border-bottom: none; }
+    .step-num {
+      font-size: 13px; font-weight: 700;
+      color: var(--persona-color);
+      letter-spacing: 0.06em;
+      padding-top: 3px;
+    }
+    .step-item h3 { font-size: 18px; font-weight: 600; color: var(--fg); margin-bottom: 8px; }
+    .step-item p { font-size: 15px; line-height: 1.7; color: var(--muted-fg); }
+
+    /* ─── QUOTE BLOCK ─────────────────────────────────── */
+    .quote-block {
+      background: var(--persona-bg);
+      border-left: 3px solid var(--persona-color);
+      border-radius: 0 12px 12px 0;
+      padding: 32px 36px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .quote-block blockquote {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: var(--fg);
+      margin-bottom: 16px;
+    }
+    .quote-attr {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted-fg);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── CTA BLOCK ───────────────────────────────────── */
+    .cta-block { text-align: center; max-width: 680px; margin: 0 auto; }
+    .cta-block h2 {
+      font-size: clamp(28px, 3.5vw, 44px); font-weight: 500;
+      letter-spacing: -0.02em; color: var(--fg); margin-bottom: 16px;
+    }
+    .cta-block p { font-size: 17px; line-height: 1.6; color: var(--muted-fg); margin-bottom: 36px; }
+
+    /* ─── BACK BREADCRUMB ─────────────────────────────── */
+    .breadcrumb {
+      font-size: 13px; color: var(--muted-fg);
+      margin-bottom: 32px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .breadcrumb a { color: var(--muted-fg); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--fg); }
+    .breadcrumb-sep { opacity: 0.5; }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    .site-footer { background: var(--secondary); border-top: 1px solid var(--border); padding: 64px 0 32px; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 64px;
+      padding-bottom: 48px; border-bottom: 1px solid var(--border); margin-bottom: 28px;
+    }
+    .footer-brand .logo { display: block; margin-bottom: 12px; }
+    .footer-tagline { font-size: 13px; color: var(--muted-fg); letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
+    .footer-col h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-fg); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a { font-size: 14px; color: var(--fg); text-decoration: none; opacity: 0.75; transition: opacity 0.15s; }
+    .footer-col ul a:hover { opacity: 1; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 13px; color: var(--muted-fg); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 13px; color: var(--muted-fg); text-decoration: none; }
+
+    .mockup-badge {
+      position: fixed; bottom: 20px; right: 20px; background: var(--fg); color: var(--bg);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 8px 14px; border-radius: 100px; opacity: 0.7; z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="home-midfi.html" class="logo">
+        <svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="2" y="24" font-family="Geist, -apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="currentColor">Camino</text>
+        </svg>
+      </a>
+      <nav>
+        <a href="home-midfi.html">home</a>
+        <a href="home-midfi.html#what-we-do">what we do</a>
+        <div class="nav-item">
+          <span class="nav-dropdown-trigger">who's using camino?</span>
+          <div class="nav-dropdown-menu">
+            <a href="for-individuals-midfi.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-dot" style="background:#DA9C59"></span>
+              Individual Learners
+            </a>
+            <a href="for-teams-midfi.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-dot" style="background:#4BA5A5"></span>
+              Organizations & Teams
+            </a>
+            <a href="for-trainers-midfi.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-dot" style="background:#A17E90"></span>
+              Trainers & Consultants
+            </a>
+            <a href="for-educators-midfi.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-dot" style="background:#E88D84"></span>
+              Educators & Students
+            </a>
+          </div>
+        </div>
+        <a href="who-we-are-midfi.html">who we are</a>
+        <a href="connect-midfi.html">connect</a>
+      </nav>
+      <a href="#" class="btn-login">Log in</a>
+    </div>
+  </header>
+
+  <!-- ══ PAGE HERO ════════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="home-midfi.html">Home</a>
+        <span class="breadcrumb-sep">→</span>
+        <span>Individual Learners</span>
+      </div>
+      <p class="persona-eyebrow"><span class="persona-eyebrow-dot"></span>For Individual Learners</p>
+      <h1>Your learning,<br>your way.</h1>
+      <p class="page-hero-lead">Whether you're reskilling, exploring a new interest, or going deeper in your field — Camino gives you a learning experience that matches how you think, at the pace you choose.</p>
+      <a href="connect-midfi.html" class="btn-primary">See It in Action</a>
+      <a href="#how-it-works" class="btn-secondary">See how it works</a>
+    </div>
+  </section>
+
+  <!-- ══ BENEFITS ═════════════════════════════════════════ -->
+  <section class="section-wrapper">
+    <div class="container">
+      <div class="section-intro">
+        <p class="section-eyebrow">what you get</p>
+        <h2>Learning built around you — not a curriculum.</h2>
+        <p>Camino adapts to your preferred format, your schedule, and your goals. No rigid syllabi, no wasted time.</p>
+      </div>
+      <div class="benefit-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm0 3v5l3.5 2" stroke="#DA9C59" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Learn at your own pace</h3>
+          <p>Pick up where you left off, slow down when you need depth, or sprint through familiar material. Camino follows you — not a calendar.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="2" stroke="#DA9C59" stroke-width="1.5"/><path d="M7 8h6M7 12h4" stroke="#DA9C59" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Choose your format</h3>
+          <p>Video, podcast, article, or an AI-powered conversation — every lesson in Camino is available in multiple formats so you consume it the way your brain likes best.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.5 5.1 17.2l.9-5.5L2 7.8l5.5-.8L10 2z" stroke="#DA9C59" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Personalized from day one</h3>
+          <p>Camino learns what you know, what you need, and where you want to go — then builds a path that's genuinely yours.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#DA9C59" stroke-width="1.5"/><path d="M10 6v4l2.5 2.5" stroke="#DA9C59" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Content that fits your life</h3>
+          <p>Short modules, deep dives, or everything in between. Fit learning into a commute, a lunch break, or a focused Sunday session.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="#DA9C59" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Track your progress</h3>
+          <p>See where you've been, celebrate what you've learned, and stay motivated with a clear picture of how far you've come.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l4 4 6-8" stroke="#DA9C59" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Learn anything, really</h3>
+          <p>From professional skills to creative passions — if there's a learning path you want, Camino can build it. You set the agenda.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ HOW IT WORKS ══════════════════════════════════════ -->
+  <section id="how-it-works" class="section-wrapper--secondary">
+    <div class="container">
+      <div class="section-intro">
+        <p class="section-eyebrow">how it works</p>
+        <h2>Three steps to learning that feels right.</h2>
+      </div>
+      <div class="steps-list">
+        <div class="step-item">
+          <span class="step-num">01</span>
+          <div>
+            <h3>Tell Camino what you're working on</h3>
+            <p>Share your goal, your background, and how you like to learn. Camino takes it from there — suggesting a path that makes sense for exactly where you are right now.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <span class="step-num">02</span>
+          <div>
+            <h3>Pick your format and start</h3>
+            <p>Every lesson is available as video, podcast, article, or AI conversation. Swap between them anytime. Read on Monday, listen on Thursday — it's all there, always.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <span class="step-num">03</span>
+          <div>
+            <h3>Build momentum at your own pace</h3>
+            <p>Camino remembers where you left off and gently surfaces what's next. No guilt, no rigid deadlines — just a learning habit that actually sticks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ QUOTE ════════════════════════════════════════════ -->
+  <section class="section-wrapper">
+    <div class="container">
+      <div class="quote-block">
+        <blockquote>"I finally found something that fits the way I actually learn — not the way a course says I should."</blockquote>
+        <p class="quote-attr">Early Camino Learner</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ══════════════════════════════════════════════ -->
+  <section class="section-wrapper--secondary">
+    <div class="container">
+      <div class="cta-block">
+        <h2>Ready to learn your way?</h2>
+        <p>Join Camino and experience learning that bends to you — not the other way around.</p>
+        <a href="connect-midfi.html" class="btn-primary">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="home-midfi.html" class="logo">
+            <svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <text x="2" y="24" font-family="Geist, -apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="currentColor">Camino</text>
+            </svg>
+          </a>
+          <p class="footer-tagline">Empower. Engage. Evolve.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="home-midfi.html#what-we-do">What We Do</a></li>
+            <li><a href="who-we-are-midfi.html">Who We Are</a></li>
+            <li><a href="connect-midfi.html">Connect</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="#">hello@caminolearning.com</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Camino. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mockup-badge">Mid-fi · Individuals</div>
+
+</body>
+</html>
