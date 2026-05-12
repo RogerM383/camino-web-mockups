@@ -290,40 +290,17 @@
     .hero-illustration {
       aspect-ratio: 1 / 1;
       max-width: 500px;
-      background: var(--accent);
       border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
       overflow: hidden;
-      border: 1px solid var(--border);
+      position: relative;
+      box-shadow: 0 4px 32px rgba(61,52,46,0.08);
     }
 
-    .hero-illustration::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 70% 30%, rgba(75,165,165,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse at 30% 80%, rgba(218,156,89,0.12) 0%, transparent 50%);
-    }
-
-    .illus-label {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--muted-fg);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .illus-label svg {
-      opacity: 0.3;
+    .hero-illustration video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     /* ─── BANNER ──────────────────────────────────────── */
@@ -372,6 +349,38 @@
       color: var(--muted-fg);
       max-width: 560px;
       line-height: 1.6;
+    }
+
+    .section-intro--row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .section-intro-text {
+      flex: 1;
+    }
+
+    .btn-demo {
+      display: inline-block;
+      flex-shrink: 0;
+      padding: 12px 24px;
+      background: transparent;
+      border: 1.5px solid var(--primary);
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.18s, color 0.18s;
+      margin-bottom: 2px;
+    }
+
+    .btn-demo:hover {
+      background: var(--primary);
+      color: white;
     }
 
     /* ─── CARD GRID (4 cols) ──────────────────────────── */
@@ -433,27 +442,28 @@
     .card-persona {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 16px;
       padding: 36px 28px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
+      box-shadow: 0 2px 8px rgba(61,52,46,0.05);
     }
 
     .persona-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      flex-shrink: 0;
     }
 
-    .persona-icon--a { background: rgba(75,165,165,0.12); }
-    .persona-icon--b { background: rgba(218,156,89,0.12); }
-    .persona-icon--c { background: rgba(161,126,144,0.12); }
-    .persona-icon--d { background: rgba(232,141,132,0.12); }
+    .persona-icon--a { background: rgba(75,165,165,0.12);  box-shadow: 0 4px 16px rgba(75,165,165,0.18); }
+    .persona-icon--b { background: rgba(218,156,89,0.12);  box-shadow: 0 4px 16px rgba(218,156,89,0.2); }
+    .persona-icon--c { background: rgba(161,126,144,0.12); box-shadow: 0 4px 16px rgba(161,126,144,0.18); }
+    .persona-icon--d { background: rgba(232,141,132,0.12); box-shadow: 0 4px 16px rgba(232,141,132,0.2); }
 
     /* ─── CARD GRID (2×2) ────────────────────────────── */
     .card-grid-2x2 {
@@ -465,13 +475,14 @@
     /* ─── PERSONA CARD (linked) ──────────────────────── */
     .card-persona--link {
       text-decoration: none;
-      transition: border-color 0.15s, box-shadow 0.15s;
+      transition: box-shadow 0.22s ease, border-color 0.18s, transform 0.22s ease;
       cursor: pointer;
     }
 
     .card-persona--link:hover {
+      transform: translateY(-4px);
       border-color: var(--primary);
-      box-shadow: 0 2px 12px rgba(161,126,144,0.12);
+      box-shadow: 0 12px 36px rgba(161,126,144,0.16), 0 2px 8px rgba(61,52,46,0.06);
     }
 
     /* ─── CARD CTA ────────────────────────────────────── */
@@ -529,9 +540,30 @@
 
     .explorer-body {
       display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 64px;
+      grid-template-columns: 200px 1fr 1fr;
+      gap: 56px;
       align-items: start;
+    }
+
+    .explorer-visual {
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      border: 1px solid var(--border);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.4s ease;
+    }
+
+    .explorer-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      inset: 0;
     }
 
     .explorer-tabs {
@@ -587,14 +619,15 @@
       padding: 0;
       display: flex;
       flex-direction: column;
+      gap: 0;
     }
 
     .exp-content-title {
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 500;
       letter-spacing: -0.02em;
       color: var(--fg);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       line-height: 1.2;
     }
 
@@ -602,22 +635,16 @@
       font-size: 16px;
       line-height: 1.75;
       color: var(--muted-fg);
-      flex: 1;
     }
 
-    .exp-content-visual {
-      margin-top: 32px;
-      height: 200px;
-      border-radius: 12px;
-      background: var(--accent);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
+    .exp-vis-placeholder-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted-fg);
+      opacity: 0.5;
     }
-
-    .exp-vis-block { border-radius: 6px; }
 
     @keyframes expFadeUp {
       from { opacity: 0; transform: translateY(8px); }
@@ -645,47 +672,244 @@
       aspect-ratio: 3 / 4;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 20px;
+      align-items: stretch;
+      justify-content: flex-start;
+      overflow: hidden;
+      position: relative;
     }
-
-    .product-screen-dot {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-    }
-
-    .product-screen-dot--teal   { background: rgba(75,165,165,0.25); }
-    .product-screen-dot--orange { background: rgba(218,156,89,0.25); }
-    .product-screen-dot--coral  { background: rgba(232,141,132,0.25); }
 
     .product-screen-label {
       font-size: 12px;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--muted-fg);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       text-align: center;
+      padding: 9px 10px;
+      border-top: 1px solid var(--border);
+      background: var(--card-muted);
+      flex-shrink: 0;
     }
 
-    .product-lines {
+    /* ── Shared mini nav bar ─────────────── */
+    .mini-nav {
       display: flex;
-      flex-direction: column;
+      align-items: center;
       gap: 6px;
-      width: 100%;
-      margin-top: 8px;
+      padding: 7px 10px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      flex-shrink: 0;
     }
-
-    .product-line {
-      height: 8px;
-      border-radius: 4px;
+    .mini-nav-logo {
+      width: 13px; height: 13px;
+      background: var(--primary);
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .mini-nav-name {
+      font-size: 8.5px;
+      font-weight: 700;
+      color: var(--fg);
+      letter-spacing: 0.02em;
+    }
+    .mini-nav-dots {
+      margin-left: auto;
+      display: flex;
+      gap: 3px;
+    }
+    .mini-nav-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
       background: var(--border);
     }
 
-    .product-line:first-child  { width: 80%; }
-    .product-line:nth-child(2) { width: 65%; }
-    .product-line:last-child   { width: 50%; }
+    /* ── Choose Your Path ─────────────── */
+    .cyp-screen {
+      display: flex; flex-direction: column; flex: 1; overflow: hidden;
+    }
+    .cyp-header {
+      padding: 12px 12px 8px;
+      flex-shrink: 0;
+    }
+    .cyp-title {
+      font-size: 13px; font-weight: 700;
+      color: #56483A; line-height: 1.2; margin-bottom: 3px;
+    }
+    .cyp-subtitle {
+      font-size: 8.5px; color: var(--muted-fg); line-height: 1.35;
+    }
+    .cyp-cards {
+      display: flex; flex-direction: column; gap: 7px;
+      padding: 0 10px; flex: 1; overflow: hidden;
+    }
+    .cyp-card {
+      border-radius: 10px; padding: 10px 10px 8px;
+      display: flex; flex-direction: column; gap: 3px; flex: 1;
+    }
+    .cyp-card-icon { font-size: 13px; }
+    .cyp-card-title {
+      font-size: 10.5px; font-weight: 700; color: white; line-height: 1.2;
+    }
+    .cyp-card-desc {
+      font-size: 7.5px; color: rgba(255,255,255,0.82); line-height: 1.35; flex: 1;
+    }
+    .cyp-card-btn {
+      margin-top: auto; padding: 4px 8px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 5px; font-size: 7.5px; font-weight: 600;
+      color: white; display: flex; align-items: center; justify-content: space-between;
+    }
+
+    /* ── Lesson View ─────────────── */
+    .lesson-screen {
+      display: flex; flex-direction: column; flex: 1; overflow: hidden;
+    }
+    .lesson-tabs-bar {
+      display: flex; gap: 2px; padding: 5px 9px;
+      border-bottom: 1px solid var(--border);
+      background: #f5f3ef; flex-shrink: 0;
+    }
+    .lesson-tab {
+      padding: 3px 7px; border-radius: 5px;
+      font-size: 7.5px; font-weight: 500; color: var(--muted-fg);
+      display: flex; align-items: center; gap: 2px;
+    }
+    .lesson-tab.active {
+      background: var(--bg); color: var(--fg); font-weight: 600;
+      border: 1px solid var(--border);
+    }
+    .lesson-video-area {
+      background: #232323; aspect-ratio: 16/9;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .lesson-play-btn {
+      width: 24px; height: 24px;
+      background: rgba(255,255,255,0.18);
+      border: 2px solid rgba(255,255,255,0.55);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lesson-play-btn::after {
+      content: '';
+      border-style: solid;
+      border-width: 4px 0 4px 7px;
+      border-color: transparent transparent transparent rgba(255,255,255,0.9);
+      margin-left: 2px;
+    }
+    .lesson-body {
+      padding: 9px 12px; flex: 1; display: flex; flex-direction: column; overflow: hidden;
+    }
+    .lesson-eyebrow {
+      font-size: 7px; font-weight: 600; color: var(--muted-fg);
+      text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 3px;
+    }
+    .lesson-section-title {
+      font-size: 11px; font-weight: 700; color: var(--fg);
+      line-height: 1.25; margin-bottom: 7px;
+    }
+    .lesson-text-lines { display: flex; flex-direction: column; gap: 4px; }
+    .lesson-text-line {
+      height: 6px; border-radius: 3px; background: var(--border);
+    }
+    .lesson-outline-strip {
+      padding: 7px 12px; background: var(--card-muted);
+      border-top: 1px solid var(--border); flex-shrink: 0;
+    }
+    .lesson-outline-label {
+      font-size: 7px; font-weight: 700; color: var(--muted-fg);
+      text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 5px;
+    }
+    .lesson-outline-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 7.5px; color: var(--fg); padding: 2px 0;
+    }
+    .lesson-outline-item.active { color: #4ba5a5; font-weight: 600; }
+    .outline-dot {
+      width: 5px; height: 5px; border-radius: 50%; background: var(--border); flex-shrink: 0;
+    }
+    .lesson-outline-item.active .outline-dot { background: #4ba5a5; }
+    .outline-check {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: #4ba5a5; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── AI Conversation ─────────────── */
+    .chat-screen {
+      display: flex; flex-direction: column; flex: 1; overflow: hidden;
+    }
+    .chat-header {
+      padding: 9px 12px 7px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+    }
+    .chat-header-row {
+      display: flex; align-items: center; gap: 7px; margin-bottom: 2px;
+    }
+    .chat-persona-avatar {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; flex-shrink: 0;
+    }
+    .chat-persona-name {
+      font-size: 11px; font-weight: 700; color: var(--fg);
+    }
+    .chat-header-sub {
+      font-size: 7.5px; color: var(--muted-fg); line-height: 1.3;
+    }
+    .chat-suggested {
+      padding: 7px 12px; display: flex; flex-wrap: wrap; gap: 4px;
+      border-bottom: 1px solid var(--border); flex-shrink: 0;
+    }
+    .chat-chip {
+      padding: 3px 7px; background: var(--primary);
+      color: white; border-radius: 12px; font-size: 7.5px; font-weight: 500; line-height: 1.3;
+    }
+    .chat-messages {
+      flex: 1; padding: 8px 12px; display: flex; flex-direction: column; gap: 7px; overflow: hidden;
+    }
+    .chat-msg { display: flex; gap: 5px; align-items: flex-start; }
+    .chat-msg--user { flex-direction: row-reverse; }
+    .chat-avatar {
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--border); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 9px;
+    }
+    .chat-avatar--ai { background: var(--primary); }
+    .chat-bubble {
+      max-width: 80%; border-radius: 8px; padding: 5px 8px;
+      font-size: 7.5px; line-height: 1.4;
+    }
+    .chat-msg--user .chat-bubble {
+      background: var(--primary); color: white;
+      border-radius: 8px 2px 8px 8px;
+    }
+    .chat-msg--ai .chat-bubble {
+      background: var(--card-muted); color: var(--fg);
+      border: 1px solid var(--border); border-radius: 2px 8px 8px 8px;
+    }
+    .chat-follow-ups {
+      display: flex; flex-wrap: wrap; gap: 3px; padding-left: 21px;
+    }
+    .chat-follow-chip {
+      padding: 2px 6px; background: var(--primary);
+      color: white; border-radius: 10px; font-size: 7px; font-weight: 500;
+    }
+    .chat-input-row {
+      display: flex; align-items: center; gap: 5px;
+      padding: 7px 10px; border-top: 1px solid var(--border); flex-shrink: 0;
+    }
+    .chat-input-field {
+      flex: 1; height: 20px; background: var(--bg);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 0 7px; font-size: 7px; color: var(--muted-fg);
+      display: flex; align-items: center;
+    }
+    .chat-send-btn {
+      width: 20px; height: 20px; background: var(--primary);
+      border-radius: 5px; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
 
     /* ─── CTA BLOCK ───────────────────────────────────── */
     .cta-block {
@@ -857,16 +1081,12 @@
           <a href="#" class="btn-primary">Start Exploring</a>
         </div>
         <div class="hero-illustration">
-          <div class="illus-label">
-            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Simple path/journey icon placeholder -->
-              <circle cx="32" cy="12" r="8" fill="#3D342E"/>
-              <path d="M32 20 Q20 32 28 44 Q36 56 48 52" stroke="#DA9C59" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-              <circle cx="48" cy="52" r="6" fill="#4BA5A5" opacity="0.6"/>
-              <circle cx="28" cy="44" r="3" fill="#A17E90" opacity="0.5"/>
-            </svg>
-            Ilustración hero
-          </div>
+          <video
+            src="https://cdn.midjourney.com/video/9116bfd6-4214-48bd-a2dd-5e007de1f13f/3.mp4"
+            autoplay
+            muted
+            playsinline
+          ></video>
         </div>
       </div>
     </div>
@@ -892,6 +1112,7 @@
         </div>
         <div class="explorer-body">
           <div class="explorer-tabs" id="exp-tabs"></div>
+          <div class="explorer-visual" id="exp-visual"></div>
           <div class="explorer-content" id="exp-content"></div>
         </div>
       </div>
@@ -905,22 +1126,22 @@
         {
           num: "01", title: "Easy to build", accent: "#4BA5A5",
           body: "No more months of course creation or cobbling together content from static libraries that never quite fit. Camino makes it simple to design learning that feels custom — without the heavy lift. Learning pathways built for humans, not for checklists.",
-          visuals: [{w:28,h:44},{w:28,h:60},{w:28,h:76},{w:28,h:52}]
+          image: ""
         },
         {
           num: "02", title: "Fast to launch", accent: "#DA9C59",
           body: "Go live in minutes, not months. Whether you're rolling out individual skill development, building team training, or company-wide training, Camino scales easily and instantly across your org. On-demand for the organization, personalized for every learner.",
-          visuals: [{w:20,h:20,r:"50%"},{w:36,h:36,r:"50%"},{w:56,h:56,r:"50%"},{w:36,h:36,r:"50%"},{w:20,h:20,r:"50%"}]
+          image: ""
         },
         {
           num: "03", title: "Fun to learn", accent: "#E88D84",
           body: "When people have fun with their learning they actually use it. Engagement rises, completion rates soar, and retention improves. Finally, a chance to make learning effective and fun — not a checkbox, but an experience worth coming back to.",
-          visuals: [{w:44,h:44,r:"50%"},{w:62,h:62,r:"50%"},{w:44,h:44,r:"50%"}]
+          image: ""
         },
         {
           num: "04", title: "Designed by Educators, Powered by AI", accent: "#A17E90",
           body: "Learning designed by people who really get learning — then injected with AI to reimagine what actual learning transformation can be. Think Universal Design for Learning meets the future, without the million-dollar graphics budget.",
-          visuals: [{w:76,h:36},{w:76,h:36},{w:76,h:36}]
+          image: ""
         }
       ];
 
@@ -947,14 +1168,20 @@
 
       function renderContent(i) {
         var f = features[i];
-        var vis = f.visuals.map(function(v) {
-          return '<div class="exp-vis-block" style="width:'+v.w+'px;height:'+v.h+'px;background:'+hex2rgba(f.accent,0.25)+';border-radius:'+(v.r||"6px")+'"></div>';
-        }).join("");
+        var gradBg = 'radial-gradient(ellipse at 40% 35%, '+hex2rgba(f.accent,0.22)+' 0%, '+hex2rgba(f.accent,0.07)+' 55%, #F4EDE0 100%)';
+
+        // Visual column — apply gradient + content directly on the element
+        var el = document.getElementById("exp-visual");
+        el.style.background = gradBg;
+        el.innerHTML = f.image
+          ? '<img src="'+f.image+'" alt="'+f.title+'" class="exp-fade" />'
+          : '<span class="exp-vis-placeholder-label exp-fade">illustration</span>';
+
+        // Text column
         document.getElementById("exp-content").innerHTML =
           '<div class="exp-fade">'
           +'<div class="exp-content-title">'+f.title+'</div>'
           +'<div class="exp-content-body">'+f.body+'</div>'
-          +'<div class="exp-content-visual">'+vis+'</div>'
           +'</div>';
       }
 
@@ -995,7 +1222,18 @@
       <div class="card-grid-2x2">
         <a href="for-individuals-midfi.html" class="card-persona card-persona--link">
           <div class="persona-icon persona-icon--b">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="#DA9C59" stroke-width="1.5"/><path d="M3 19c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#DA9C59" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="19" fill="#FDF3E3" stroke="#DA9C59" stroke-width="2"/>
+              <circle cx="24" cy="24" r="13" fill="none" stroke="#DA9C59" stroke-width="0.75" stroke-dasharray="2.5 2"/>
+              <line x1="24" y1="7" x2="24" y2="12" stroke="#DA9C59" stroke-width="2" stroke-linecap="round"/>
+              <line x1="24" y1="36" x2="24" y2="41" stroke="#DA9C59" stroke-width="2" stroke-linecap="round"/>
+              <line x1="7" y1="24" x2="12" y2="24" stroke="#DA9C59" stroke-width="2" stroke-linecap="round"/>
+              <line x1="36" y1="24" x2="41" y2="24" stroke="#DA9C59" stroke-width="2" stroke-linecap="round"/>
+              <text x="24" y="17" text-anchor="middle" font-size="5.5" font-weight="700" fill="#DA9C59" font-family="sans-serif">N</text>
+              <polygon points="24,12 26.5,24 21.5,24" fill="#DA9C59"/>
+              <polygon points="24,36 26.5,24 21.5,24" fill="#3D342E" fill-opacity="0.2"/>
+              <circle cx="24" cy="24" r="2.5" fill="white" stroke="#DA9C59" stroke-width="1.5"/>
+            </svg>
           </div>
           <h3>Individual Learners</h3>
           <p>Your learning, your way. Choose your format — video, podcast, article, AI conversation — and switch whenever you want. Camino adapts to how you think, not the other way around.</p>
@@ -1003,7 +1241,16 @@
         </a>
         <a href="for-teams-midfi.html" class="card-persona card-persona--link">
           <div class="persona-icon persona-icon--a">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="3" stroke="#4BA5A5" stroke-width="1.5"/><circle cx="15" cy="8" r="3" stroke="#4BA5A5" stroke-width="1.5"/><path d="M1 19c0-3.9 3.1-7 7-7M14 12c3.9 0 7 3.1 7 7" stroke="#4BA5A5" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="30" height="30" rx="3" fill="#E8F5F5" stroke="#4BA5A5" stroke-width="1.75"/>
+              <ellipse cx="24" cy="9" rx="15" ry="4" fill="#B8DEDE" stroke="#4BA5A5" stroke-width="1"/>
+              <ellipse cx="24" cy="39" rx="15" ry="4" fill="#B8DEDE" stroke="#4BA5A5" stroke-width="1"/>
+              <path d="M13 22 Q18 17 24 22 Q30 27 35 22" stroke="#4BA5A5" stroke-width="1.5" stroke-dasharray="2.5 2" stroke-linecap="round" fill="none" stroke-opacity="0.7"/>
+              <circle cx="13" cy="22" r="2" fill="#4BA5A5" fill-opacity="0.45"/>
+              <circle cx="35" cy="21" r="4" fill="#DA9C59"/>
+              <path d="M35 25 L35 31" stroke="#DA9C59" stroke-width="2" stroke-linecap="round"/>
+              <path d="M32.5 31 L37.5 31" stroke="#DA9C59" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
           </div>
           <h3>Organizations & Teams</h3>
           <p>Create training that's fast, flexible, and feels like a perk. Launch learning pathways in minutes and share them with individuals, teams, or the whole organization.</p>
@@ -1011,7 +1258,16 @@
         </a>
         <a href="for-trainers-midfi.html" class="card-persona card-persona--link">
           <div class="persona-icon persona-icon--c">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="4" width="16" height="12" rx="2" stroke="#A17E90" stroke-width="1.5"/><path d="M8 20h6M11 16v4" stroke="#A17E90" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="19" width="22" height="11" rx="5.5" fill="#F0E8ED" stroke="#A17E90" stroke-width="1.75"/>
+              <ellipse cx="8" cy="24.5" rx="3.5" ry="5.5" fill="#C9AABB" stroke="#A17E90" stroke-width="1.25"/>
+              <circle cx="36" cy="22" r="7" fill="#EEE8F0" stroke="#A17E90" stroke-width="1.75"/>
+              <circle cx="36" cy="22" r="4.5" fill="#DDD3E6" stroke="#A17E90" stroke-width="0.75"/>
+              <circle cx="34.5" cy="20.5" r="1.5" fill="white" fill-opacity="0.65"/>
+              <line x1="21" y1="30" x2="15" y2="42" stroke="#A17E90" stroke-width="1.75" stroke-linecap="round"/>
+              <line x1="21" y1="30" x2="27" y2="42" stroke="#A17E90" stroke-width="1.75" stroke-linecap="round"/>
+              <line x1="15.5" y1="39" x2="26.5" y2="39" stroke="#A17E90" stroke-width="1.25" stroke-linecap="round"/>
+            </svg>
           </div>
           <h3>Trainers & Consultants</h3>
           <p>Design and launch custom training in minutes. Upload your existing content, your articles, even your book — Camino builds from your vision, strategy, and voice.</p>
@@ -1019,7 +1275,18 @@
         </a>
         <a href="for-educators-midfi.html" class="card-persona card-persona--link">
           <div class="persona-icon persona-icon--d">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3L2 8l9 5 9-5-9-5z" stroke="#E88D84" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 12l9 5 9-5M2 16l9 5 9-5" stroke="#E88D84" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 11 L7 14 L7 38 L24 35 Z" fill="#FFF0EE" stroke="#E88D84" stroke-width="1.75" stroke-linejoin="round"/>
+              <path d="M24 11 L41 14 L41 38 L24 35 Z" fill="#FFF0EE" stroke="#E88D84" stroke-width="1.75" stroke-linejoin="round"/>
+              <line x1="24" y1="11" x2="24" y2="35" stroke="#E88D84" stroke-width="3"/>
+              <line x1="10" y1="20" x2="21" y2="19" stroke="#E88D84" stroke-width="1.1" stroke-linecap="round" stroke-opacity="0.5"/>
+              <line x1="10" y1="24.5" x2="21" y2="23.5" stroke="#E88D84" stroke-width="1.1" stroke-linecap="round" stroke-opacity="0.5"/>
+              <line x1="10" y1="29" x2="18" y2="28.2" stroke="#E88D84" stroke-width="1.1" stroke-linecap="round" stroke-opacity="0.5"/>
+              <line x1="27" y1="19" x2="38" y2="20" stroke="#E88D84" stroke-width="1.1" stroke-linecap="round" stroke-opacity="0.5"/>
+              <line x1="27" y1="23.5" x2="38" y2="24.5" stroke="#E88D84" stroke-width="1.1" stroke-linecap="round" stroke-opacity="0.5"/>
+              <line x1="27" y1="28.2" x2="34" y2="29" stroke="#E88D84" stroke-width="1.1" stroke-linecap="round" stroke-opacity="0.5"/>
+              <path d="M37 7 L37 19 L34 17 L31 19 L31 7 Z" fill="#E88D84" fill-opacity="0.75"/>
+            </svg>
           </div>
           <h3>Educators & Students</h3>
           <p>Spin up curricula instantly and give learners the freedom to engage their own way. Students discover a study tool that adapts to them — making learning feel like a superpower.</p>
@@ -1032,36 +1299,141 @@
   <!-- ══ INSIDE CAMINO (nuevo bloque) ═════════════════════ -->
   <section class="section-wrapper">
     <div class="container">
-      <div class="section-intro">
-        <p class="section-eyebrow">inside camino</p>
-        <h2>See it in action</h2>
-        <p>A learning experience that adapts to every person — video, podcast, article, or AI conversation. Choose your path.</p>
+      <div class="section-intro section-intro--row">
+        <div class="section-intro-text">
+          <p class="section-eyebrow">inside camino</p>
+          <h2>See it in action</h2>
+          <p>A learning experience that adapts to every person — video, podcast, article, or AI conversation. Choose your path.</p>
+        </div>
+        <a href="#" class="btn-demo">Try it out</a>
       </div>
       <div class="product-showcase">
+        <!-- ── CARD 1: Choose Your Path ───────────── -->
         <div class="product-screen">
-          <div class="product-screen-dot product-screen-dot--teal"></div>
-          <div class="product-lines">
-            <div class="product-line"></div>
-            <div class="product-line"></div>
-            <div class="product-line"></div>
+          <div class="mini-nav">
+            <div class="mini-nav-logo"></div>
+            <span class="mini-nav-name">camino</span>
+            <div class="mini-nav-dots">
+              <div class="mini-nav-dot"></div>
+              <div class="mini-nav-dot"></div>
+              <div class="mini-nav-dot"></div>
+            </div>
+          </div>
+          <div class="cyp-screen">
+            <div class="cyp-header">
+              <div class="cyp-title">Choose Your Path</div>
+              <div class="cyp-subtitle">Select how you'd like to start your learning journey with Camino.</div>
+            </div>
+            <div class="cyp-cards">
+              <div class="cyp-card" style="background:#4ba5a5;">
+                <div class="cyp-card-icon">💼</div>
+                <div class="cyp-card-title">Career-Builder</div>
+                <div class="cyp-card-desc">Forge a comprehensive learning path tailored to your career ambitions.</div>
+                <div class="cyp-card-btn"><span>Start Building</span><span>→</span></div>
+              </div>
+              <div class="cyp-card" style="background:#da9c59;">
+                <div class="cyp-card-icon">💡</div>
+                <div class="cyp-card-title">Pathway-Builder</div>
+                <div class="cyp-card-desc">Deepen your understanding in specific areas of interest or study.</div>
+                <div class="cyp-card-btn"><span>Explore Topics</span><span>→</span></div>
+              </div>
+              <div class="cyp-card" style="background:linear-gradient(135deg,#c9965e,#e0a968);">
+                <div class="cyp-card-icon">⚡</div>
+                <div class="cyp-card-title">Quick Bites</div>
+                <div class="cyp-card-desc">Fast, focused learning in under 5 minutes. No fluff, just knowledge.</div>
+                <div class="cyp-card-btn"><span>Learn Quickly</span><span>→</span></div>
+              </div>
+            </div>
           </div>
           <p class="product-screen-label">Choose your path</p>
         </div>
+
+        <!-- ── CARD 2: Lesson View ───────────── -->
         <div class="product-screen">
-          <div class="product-screen-dot product-screen-dot--orange"></div>
-          <div class="product-lines">
-            <div class="product-line"></div>
-            <div class="product-line"></div>
-            <div class="product-line"></div>
+          <div class="mini-nav">
+            <div class="mini-nav-logo"></div>
+            <span class="mini-nav-name">camino</span>
+            <div class="mini-nav-dots">
+              <div class="mini-nav-dot"></div>
+              <div class="mini-nav-dot"></div>
+              <div class="mini-nav-dot"></div>
+            </div>
+          </div>
+          <div class="lesson-screen">
+            <div class="lesson-tabs-bar">
+              <div class="lesson-tab active">▶ Video</div>
+              <div class="lesson-tab">🎙 Podcast</div>
+              <div class="lesson-tab">📄 Text</div>
+            </div>
+            <div class="lesson-video-area">
+              <div class="lesson-play-btn"></div>
+            </div>
+            <div class="lesson-body">
+              <div class="lesson-eyebrow">Section 2 of 6</div>
+              <div class="lesson-section-title">The Rise of Machine Learning</div>
+              <div class="lesson-text-lines">
+                <div class="lesson-text-line" style="width:90%"></div>
+                <div class="lesson-text-line" style="width:78%"></div>
+                <div class="lesson-text-line" style="width:85%"></div>
+                <div class="lesson-text-line" style="width:60%"></div>
+              </div>
+            </div>
+            <div class="lesson-outline-strip">
+              <div class="lesson-outline-label">Course Outline</div>
+              <div class="lesson-outline-item"><div class="outline-check"></div>Introduction to AI</div>
+              <div class="lesson-outline-item active"><div class="outline-dot"></div>The Rise of Machine Learning</div>
+              <div class="lesson-outline-item"><div class="outline-dot"></div>Neural Networks Explained</div>
+            </div>
           </div>
           <p class="product-screen-label">Lesson view</p>
         </div>
+
+        <!-- ── CARD 3: AI Conversation ───────────── -->
         <div class="product-screen">
-          <div class="product-screen-dot product-screen-dot--coral"></div>
-          <div class="product-lines">
-            <div class="product-line"></div>
-            <div class="product-line"></div>
-            <div class="product-line"></div>
+          <div class="mini-nav">
+            <div class="mini-nav-logo"></div>
+            <span class="mini-nav-name">camino</span>
+            <div class="mini-nav-dots">
+              <div class="mini-nav-dot"></div>
+              <div class="mini-nav-dot"></div>
+              <div class="mini-nav-dot"></div>
+            </div>
+          </div>
+          <div class="chat-screen">
+            <div class="chat-header">
+              <div class="chat-header-row">
+                <div class="chat-persona-avatar">🎓</div>
+                <span class="chat-persona-name">Ask Sofia</span>
+              </div>
+              <div class="chat-header-sub">Ask questions about the lesson content</div>
+            </div>
+            <div class="chat-suggested">
+              <div class="chat-chip">What is machine learning?</div>
+              <div class="chat-chip">How do neural networks work?</div>
+              <div class="chat-chip">Real-world AI examples?</div>
+            </div>
+            <div class="chat-messages">
+              <div class="chat-msg chat-msg--user">
+                <div class="chat-avatar">👤</div>
+                <div class="chat-bubble">Can you explain how neural networks learn from data?</div>
+              </div>
+              <div>
+                <div class="chat-msg chat-msg--ai">
+                  <div class="chat-avatar chat-avatar--ai">🎓</div>
+                  <div class="chat-bubble">Neural networks learn by adjusting the weight of connections between nodes based on example data — a process called backpropagation.</div>
+                </div>
+                <div class="chat-follow-ups" style="margin-top:4px;">
+                  <div class="chat-follow-chip">What is backpropagation?</div>
+                  <div class="chat-follow-chip">Show me an example</div>
+                </div>
+              </div>
+            </div>
+            <div class="chat-input-row">
+              <div class="chat-input-field">Ask a question about the lesson...</div>
+              <div class="chat-send-btn">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </div>
+            </div>
           </div>
           <p class="product-screen-label">AI conversation</p>
         </div>
@@ -1103,7 +1475,8 @@
         <div class="footer-col">
           <h4>Contact</h4>
           <ul>
-            <li><a href="#">hello@caminolearning.com</a></li>
+            <li><a href="mailto:scott@caminolearning.com">scott@caminolearning.com</a></li>
+            <li><a href="tel:8314546337">831.454.6337</a></li>
             <li><a href="#">Privacy Policy</a></li>
             <li><a href="#">Terms of Service</a></li>
           </ul>
