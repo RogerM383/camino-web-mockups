@@ -289,11 +289,12 @@
 
     .hero-illustration {
       aspect-ratio: 1 / 1;
-      max-width: 500px;
-      border-radius: 16px;
-      overflow: hidden;
+      max-width: 460px;
+      border-radius: 0;
+      overflow: visible;
       position: relative;
-      box-shadow: 0 4px 32px rgba(61,52,46,0.08);
+      mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 45%, transparent 82%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 45%, transparent 82%);
     }
 
     .hero-illustration video {
@@ -1126,22 +1127,22 @@
         {
           num: "01", title: "Easy to build", accent: "#4BA5A5",
           body: "No more months of course creation or cobbling together content from static libraries that never quite fit. Camino makes it simple to design learning that feels custom — without the heavy lift. Learning pathways built for humans, not for checklists.",
-          image: ""
+          image: "https://cdn.midjourney.com/1ce41278-8cb3-47ac-a544-f2dc4f13ab6a/0_2.png"
         },
         {
           num: "02", title: "Fast to launch", accent: "#DA9C59",
           body: "Go live in minutes, not months. Whether you're rolling out individual skill development, building team training, or company-wide training, Camino scales easily and instantly across your org. On-demand for the organization, personalized for every learner.",
-          image: ""
+          image: "https://cdn.midjourney.com/000a7e72-822c-4547-abe8-c143f3da23de/0_2.png"
         },
         {
           num: "03", title: "Fun to learn", accent: "#E88D84",
           body: "When people have fun with their learning they actually use it. Engagement rises, completion rates soar, and retention improves. Finally, a chance to make learning effective and fun — not a checkbox, but an experience worth coming back to.",
-          image: ""
+          image: "https://cdn.midjourney.com/c303bd3d-ba97-45ac-8e75-11af6428d958/0_3.png"
         },
         {
           num: "04", title: "Designed by Educators, Powered by AI", accent: "#A17E90",
           body: "Learning designed by people who really get learning — then injected with AI to reimagine what actual learning transformation can be. Think Universal Design for Learning meets the future, without the million-dollar graphics budget.",
-          image: ""
+          image: "https://cdn.midjourney.com/87ae550e-a063-4332-95d0-74cd9491815f/0_3.png"
         }
       ];
 
@@ -1209,6 +1210,7 @@
 
       window.expGoTo(0);
     })();
+
   </script>
 
   <!-- ══ WHO'S USING CAMINO ════════════════════════════════ -->
