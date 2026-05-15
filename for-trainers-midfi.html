@@ -54,7 +54,7 @@
     }
     .header-inner { display: flex; align-items: center; width: 100%; }
     .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; color: var(--fg); }
-    .logo svg { height: 22px; width: auto; display: block; }
+    .logo-text { font-family: 'Geist', -apple-system, system-ui, sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.03em; color: var(--fg); }
     nav { display: flex; align-items: center; justify-content: center; gap: 36px; flex: 1; padding: 0 32px; }
     nav a { font-size: 14px; font-weight: 500; color: var(--muted-fg); text-decoration: none; letter-spacing: 0.01em; transition: color 0.15s; }
     nav a:hover { color: var(--fg); }
@@ -146,36 +146,186 @@
     .benefit-card h3 { font-size: 16px; font-weight: 600; color: var(--fg); line-height: 1.3; }
     .benefit-card p { font-size: 14px; line-height: 1.7; color: var(--muted-fg); }
 
-    /* Content types showcase */
-    .content-types {
+    /* ─── FORMAT SHOWCASE ────────────────────────────────── */
+    .format-showcase {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
-      margin-top: 48px;
+      margin-bottom: 56px;
     }
-    .content-type-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-      padding: 24px 20px; text-align: center; display: flex; flex-direction: column;
-      align-items: center; gap: 10px;
+    .format-card {
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(61,52,46,0.06);
     }
-    .content-type-icon {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--persona-bg);
-      display: flex; align-items: center; justify-content: center; margin: 0 auto;
+    .format-card-header {
+      padding: 36px 20px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      position: relative;
     }
-    .content-type-card h4 { font-size: 14px; font-weight: 600; color: var(--fg); }
-    .content-type-card p { font-size: 13px; color: var(--muted-fg); line-height: 1.5; }
+    .format-card-visual {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.25);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .format-card-header h4 {
+      font-size: 15px; font-weight: 700;
+      color: #fff; text-align: center;
+      letter-spacing: -0.01em;
+    }
+    .format-card-header p {
+      font-size: 12px; color: rgba(255,255,255,0.75);
+      text-align: center; line-height: 1.5;
+      margin-top: -6px;
+    }
+    /* Mini decorative preview element */
+    .format-preview {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 4px;
+    }
+    .format-card-body {
+      padding: 16px 18px 18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 18px 18px;
+      flex: 1;
+    }
+    .format-card-body p {
+      font-size: 13px; line-height: 1.6; color: var(--muted-fg);
+    }
 
-    .steps-list { display: flex; flex-direction: column; gap: 0; max-width: 720px; }
+    /* ─── HOW IT WORKS ────────────────────────────────── */
+    .how-it-works-layout {
+      display: grid;
+      grid-template-columns: 5fr 8fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .steps-list { display: flex; flex-direction: column; gap: 0; }
     .step-item {
       display: grid; grid-template-columns: 48px 1fr; gap: 24px;
       padding: 32px 0; border-bottom: 1px solid var(--border);
+      cursor: default; transition: opacity 0.2s;
     }
     .step-item:first-child { padding-top: 0; }
     .step-item:last-child { border-bottom: none; }
     .step-num { font-size: 13px; font-weight: 700; color: var(--persona-color); letter-spacing: 0.06em; padding-top: 3px; }
     .step-item h3 { font-size: 18px; font-weight: 600; color: var(--fg); margin-bottom: 8px; }
     .step-item p { font-size: 15px; line-height: 1.7; color: var(--muted-fg); }
+
+    /* ─── APP CARD ────────────────────────────────────── */
+    .hiw-app-card {
+      position: sticky; top: 88px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 2px 8px rgba(61,52,46,0.06), 0 12px 40px rgba(61,52,46,0.08);
+    }
+    .app-chrome {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 16px;
+      background: var(--card-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .app-chrome-dots { display: flex; gap: 5px; }
+    .app-chrome-dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+    .app-chrome-title { flex: 1; text-align: center; font-size: 12px; font-weight: 600; color: var(--muted-fg); letter-spacing: 0.04em; }
+    .app-screen { display: none; flex-direction: column; padding: 20px; min-height: 340px; }
+    .app-screen.active { display: flex; }
+
+    /* ── Screen 1: Upload ── */
+    .app-screen-title { font-size: 13px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+    .app-screen-sub { font-size: 11px; color: var(--muted-fg); margin-bottom: 16px; }
+    .app-file-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .app-file-row {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--secondary); border-radius: 8px;
+      padding: 9px 12px;
+    }
+    .app-file-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .app-file-icon--pdf { background: rgba(232,141,132,0.15); }
+    .app-file-icon--ppt { background: rgba(218,156,89,0.15); }
+    .app-file-icon--vid { background: rgba(75,165,165,0.15); }
+    .app-file-info { flex: 1; min-width: 0; }
+    .app-file-name { font-size: 12px; font-weight: 600; color: var(--fg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .app-file-meta { font-size: 10px; color: var(--muted-fg); margin-top: 1px; }
+    .app-file-check { color: #4BA5A5; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+    .app-add-row {
+      display: flex; align-items: center; gap: 8px;
+      border: 1.5px dashed var(--border); border-radius: 8px;
+      padding: 10px 12px; font-size: 12px; color: var(--muted-fg);
+      margin-bottom: 16px;
+    }
+    .app-btn-small {
+      background: var(--persona-color); color: #fff;
+      border-radius: 8px; padding: 10px 16px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+      text-align: center; margin-top: auto;
+    }
+
+    /* ── Screen 2: Outline builder (matches SkillsTable.tsx) ── */
+    .app-outline-header { margin-bottom: 14px; }
+    .app-outline-header .app-back { font-size: 10px; color: var(--muted-fg); margin-bottom: 3px; }
+    .app-outline-header h4 { font-size: 14px; font-weight: 600; color: var(--fg); }
+    .app-outline-header .app-draft-badge {
+      display: inline-block; font-size: 10px; font-weight: 600;
+      background: rgba(218,156,89,0.15); color: #DA9C59;
+      border-radius: 4px; padding: 2px 7px; margin-left: 6px;
+      vertical-align: middle;
+    }
+    .app-group-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-fg); margin-bottom: 8px; }
+    .app-module-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 12px; }
+    .app-module-row {
+      background: var(--secondary); border-radius: 8px; padding: 10px 12px;
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .app-module-num { font-size: 10px; font-weight: 700; color: var(--persona-color); width: 14px; flex-shrink: 0; padding-top: 2px; }
+    .app-module-body { flex: 1; min-width: 0; }
+    .app-module-name { font-size: 12px; font-weight: 600; color: var(--fg); margin-bottom: 5px; line-height: 1.3; }
+    .app-chips { display: flex; gap: 4px; flex-wrap: wrap; }
+    /* Chip colors match real SkillsTable: Think=blue, Communicate=purple, Grow=orange, Work=green */
+    .app-chip { font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 100px; }
+    .app-chip--think { background: #dbeafe; color: #1e40af; }
+    .app-chip--communicate { background: #ede9fe; color: #5b21b6; }
+    .app-chip--grow { background: #ffedd5; color: #9a3412; }
+    .app-chip--work { background: #dcfce7; color: #166534; }
+    .app-add-module {
+      font-size: 12px; color: var(--persona-color); font-weight: 500;
+      display: flex; align-items: center; gap: 5px; margin-bottom: 14px;
+    }
+
+    /* ── Screen 3: Analytics ── */
+    .app-cohort-header { margin-bottom: 16px; }
+    .app-cohort-header h4 { font-size: 14px; font-weight: 600; color: var(--fg); }
+    .app-cohort-header p { font-size: 11px; color: var(--muted-fg); margin-top: 2px; }
+    .app-stat-row { display: flex; gap: 10px; margin-bottom: 16px; }
+    .app-stat { flex: 1; background: var(--secondary); border-radius: 8px; padding: 10px 12px; }
+    .app-stat .val { font-size: 20px; font-weight: 700; color: var(--fg); line-height: 1; }
+    .app-stat .lbl { font-size: 10px; color: var(--muted-fg); margin-top: 3px; }
+    .app-format-breakdown { margin-bottom: 16px; }
+    .app-format-breakdown .app-group-label { margin-bottom: 10px; }
+    .app-fbar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .app-fbar-label { font-size: 11px; color: var(--muted-fg); width: 46px; flex-shrink: 0; }
+    .app-fbar-track { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .app-fbar-fill { height: 100%; border-radius: 3px; }
+    .app-fbar-pct { font-size: 10px; color: var(--muted-fg); width: 28px; text-align: right; }
+    .app-learner-list { display: flex; flex-direction: column; gap: 6px; }
+    .app-learner-row { display: flex; align-items: center; gap: 8px; }
+    .app-learner-avatar { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .app-learner-name { font-size: 12px; font-weight: 500; color: var(--fg); flex: 1; }
+    .app-learner-status { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 100px; }
+    .app-learner-status--done { background: rgba(75,165,165,0.15); color: #4BA5A5; }
+    .app-learner-status--prog { background: var(--secondary); color: var(--muted-fg); }
 
     .quote-block {
       background: var(--persona-bg); border-left: 3px solid var(--persona-color);
@@ -218,9 +368,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="home-midfi.html" class="logo">
-        <svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="2" y="24" font-family="Geist, -apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="currentColor">Camino</text>
-        </svg>
+        <span class="logo-text">Camino</span>
       </a>
       <nav>
         <a href="home-midfi.html">home</a>
@@ -277,6 +425,110 @@
         <h2>Stop spending time on format. Start spending it on insight.</h2>
         <p>Camino handles the delivery — so you can focus on the expertise only you can provide.</p>
       </div>
+
+      <!-- FORMAT SHOWCASE — top, big, visual -->
+      <div class="format-showcase">
+
+        <!-- Video -->
+        <div class="format-card">
+          <div class="format-card-header" style="background:#E88D84;">
+            <div class="format-card-visual">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <h4>Video</h4>
+            <p>Watch & absorb at your own pace</p>
+            <!-- Mini player preview -->
+            <div class="format-preview">
+              <svg width="100" height="20" viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="8" width="100" height="3" rx="1.5" fill="rgba(255,255,255,0.25)"/>
+                <rect x="0" y="8" width="42" height="3" rx="1.5" fill="rgba(255,255,255,0.85)"/>
+                <circle cx="42" cy="9.5" r="5" fill="white"/>
+              </svg>
+            </div>
+          </div>
+          <div class="format-card-body">
+            <p>Record talks, lectures, or walkthroughs. Your delivery, preserved exactly as intended.</p>
+          </div>
+        </div>
+
+        <!-- Podcast -->
+        <div class="format-card">
+          <div class="format-card-header" style="background:#4BA5A5;">
+            <div class="format-card-visual">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+            </div>
+            <h4>Podcast</h4>
+            <p>Listen anywhere, anytime</p>
+            <!-- Waveform preview -->
+            <div class="format-preview">
+              <svg width="90" height="22" viewBox="0 0 90 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0"  y="9"  width="6" height="4"  rx="3" fill="rgba(255,255,255,0.4)"/>
+                <rect x="10" y="5"  width="6" height="12" rx="3" fill="rgba(255,255,255,0.85)"/>
+                <rect x="20" y="2"  width="6" height="18" rx="3" fill="rgba(255,255,255,0.85)"/>
+                <rect x="30" y="6"  width="6" height="10" rx="3" fill="rgba(255,255,255,0.85)"/>
+                <rect x="40" y="0"  width="6" height="22" rx="3" fill="white"/>
+                <rect x="50" y="4"  width="6" height="14" rx="3" fill="rgba(255,255,255,0.6)"/>
+                <rect x="60" y="7"  width="6" height="8"  rx="3" fill="rgba(255,255,255,0.4)"/>
+                <rect x="70" y="9"  width="6" height="4"  rx="3" fill="rgba(255,255,255,0.3)"/>
+                <rect x="80" y="8"  width="6" height="6"  rx="3" fill="rgba(255,255,255,0.3)"/>
+              </svg>
+            </div>
+          </div>
+          <div class="format-card-body">
+            <p>Content auto-converted to audio. Learners absorb your ideas on the commute, at the gym, between meetings.</p>
+          </div>
+        </div>
+
+        <!-- Article -->
+        <div class="format-card">
+          <div class="format-card-header" style="background:#DA9C59;">
+            <div class="format-card-visual">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h4>Article</h4>
+            <p>Read, highlight & reflect</p>
+            <!-- Text lines preview -->
+            <div class="format-preview">
+              <svg width="90" height="22" viewBox="0 0 90 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="1"  width="90" height="4" rx="2" fill="rgba(255,255,255,0.85)"/>
+                <rect x="0" y="9"  width="76" height="4" rx="2" fill="rgba(255,255,255,0.6)"/>
+                <rect x="0" y="17" width="52" height="4" rx="2" fill="rgba(255,255,255,0.35)"/>
+              </svg>
+            </div>
+          </div>
+          <div class="format-card-body">
+            <p>Your content structured into clear, readable articles. Ideal for deep focus and reference after sessions.</p>
+          </div>
+        </div>
+
+        <!-- AI Conversation -->
+        <div class="format-card">
+          <div class="format-card-header" style="background:#A17E90;">
+            <div class="format-card-visual">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h4>AI Conversation</h4>
+            <p>Ask, explore, go deeper</p>
+            <!-- Chat bubbles preview -->
+            <div class="format-preview">
+              <svg width="90" height="26" viewBox="0 0 90 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0"  y="0"  width="52" height="11" rx="6" fill="rgba(255,255,255,0.85)"/>
+                <rect x="30" y="15" width="60" height="11" rx="6" fill="rgba(255,255,255,0.4)"/>
+                <!-- typing dots -->
+                <circle cx="36" cy="20.5" r="2" fill="rgba(255,255,255,0.7)"/>
+                <circle cx="44" cy="20.5" r="2" fill="rgba(255,255,255,0.7)"/>
+                <circle cx="52" cy="20.5" r="2" fill="rgba(255,255,255,0.7)"/>
+              </svg>
+            </div>
+          </div>
+          <div class="format-card-body">
+            <p>Learners can interrogate your material, ask follow-up questions and explore edge cases — powered by your content.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 6 BENEFIT CARDS -->
       <div class="benefit-grid">
         <div class="benefit-card">
           <div class="benefit-icon">
@@ -321,38 +573,6 @@
           <p>Once your program is live, it runs. Deliver to 5 clients or 500 without proportionally more of your time. Camino is the leverage between your expertise and your reach.</p>
         </div>
       </div>
-
-      <!-- CONTENT TYPES -->
-      <div class="content-types">
-        <div class="content-type-card">
-          <div class="content-type-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="2" stroke="#A17E90" stroke-width="1.5"/><path d="M6 9h6M6 6h6M6 12h3" stroke="#A17E90" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <h4>Articles & PDFs</h4>
-          <p>Upload your existing written materials directly</p>
-        </div>
-        <div class="content-type-card">
-          <div class="content-type-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#A17E90" stroke-width="1.5"/><path d="M7 6l5 3-5 3V6z" fill="#A17E90"/></svg>
-          </div>
-          <h4>Video</h4>
-          <p>Record talks, lectures, or walkthroughs</p>
-        </div>
-        <div class="content-type-card">
-          <div class="content-type-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="7" r="4" stroke="#A17E90" stroke-width="1.5"/><path d="M5 14c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="#A17E90" stroke-width="1.5" stroke-linecap="round"/><path d="M9 11v3" stroke="#A17E90" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <h4>Audio / Podcast</h4>
-          <p>Convert your content to listenable formats</p>
-        </div>
-        <div class="content-type-card">
-          <div class="content-type-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 5h12M3 9h8M3 13h10" stroke="#A17E90" stroke-width="1.5" stroke-linecap="round"/><circle cx="14" cy="13" r="2" stroke="#A17E90" stroke-width="1.5"/></svg>
-          </div>
-          <h4>AI Conversation</h4>
-          <p>Let learners explore your ideas interactively</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -363,31 +583,216 @@
         <p class="section-eyebrow">how it works</p>
         <h2>From raw material to live program.</h2>
       </div>
-      <div class="steps-list">
-        <div class="step-item">
-          <span class="step-num">01</span>
-          <div>
-            <h3>Bring what you have</h3>
-            <p>Upload slides, articles, a book draft, or a video recording. Paste a course outline or just describe what you want to teach. Camino starts from wherever you are.</p>
+      <div class="how-it-works-layout">
+
+        <!-- App card -->
+        <div class="hiw-app-card">
+          <div class="app-chrome">
+            <div class="app-chrome-dots"><span></span><span></span><span></span></div>
+            <div class="app-chrome-title">Camino</div>
+          </div>
+
+          <!-- Screen 1: Content upload -->
+          <div class="app-screen active" id="hiw-screen-1">
+            <div class="app-screen-title">New Program</div>
+            <div class="app-screen-sub">Add your existing content to get started</div>
+            <div class="app-file-list">
+              <div class="app-file-row">
+                <div class="app-file-icon app-file-icon--pdf">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E88D84" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </div>
+                <div class="app-file-info">
+                  <div class="app-file-name">Leadership Framework.pdf</div>
+                  <div class="app-file-meta">2.4 MB · Processed</div>
+                </div>
+                <div class="app-file-check">✓</div>
+              </div>
+              <div class="app-file-row">
+                <div class="app-file-icon app-file-icon--ppt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DA9C59" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                </div>
+                <div class="app-file-info">
+                  <div class="app-file-name">Workshop Slides.pptx</div>
+                  <div class="app-file-meta">5.1 MB · Processed</div>
+                </div>
+                <div class="app-file-check">✓</div>
+              </div>
+              <div class="app-file-row">
+                <div class="app-file-icon app-file-icon--vid">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4BA5A5" stroke-width="2" stroke-linecap="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                </div>
+                <div class="app-file-info">
+                  <div class="app-file-name">Keynote Talk.mp4</div>
+                  <div class="app-file-meta">48 min · Transcribed</div>
+                </div>
+                <div class="app-file-check">✓</div>
+              </div>
+            </div>
+            <div class="app-add-row">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add more content…
+            </div>
+            <div class="app-btn-small">Generate structure →</div>
+          </div>
+
+          <!-- Screen 2: Course outline builder (matches SkillsTable.tsx) -->
+          <div class="app-screen" id="hiw-screen-2">
+            <div class="app-outline-header">
+              <div class="app-back">← My Programs</div>
+              <h4>Leadership Essentials <span class="app-draft-badge">Draft</span></h4>
+            </div>
+            <div class="app-group-label">Core Modules</div>
+            <div class="app-module-list">
+              <div class="app-module-row">
+                <div class="app-module-num">1</div>
+                <div class="app-module-body">
+                  <div class="app-module-name">Foundations of Leadership</div>
+                  <div class="app-chips">
+                    <span class="app-chip app-chip--think">Think</span>
+                    <span class="app-chip app-chip--communicate">Communicate</span>
+                  </div>
+                </div>
+              </div>
+              <div class="app-module-row">
+                <div class="app-module-num">2</div>
+                <div class="app-module-body">
+                  <div class="app-module-name">Leading Through Change</div>
+                  <div class="app-chips">
+                    <span class="app-chip app-chip--grow">Grow</span>
+                    <span class="app-chip app-chip--work">Work with others</span>
+                  </div>
+                </div>
+              </div>
+              <div class="app-module-row">
+                <div class="app-module-num">3</div>
+                <div class="app-module-body">
+                  <div class="app-module-name">Difficult Conversations</div>
+                  <div class="app-chips">
+                    <span class="app-chip app-chip--communicate">Communicate</span>
+                    <span class="app-chip app-chip--think">Think</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="app-add-module">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add module
+            </div>
+            <div class="app-btn-small">Review & publish →</div>
+          </div>
+
+          <!-- Screen 3: Cohort analytics -->
+          <div class="app-screen" id="hiw-screen-3">
+            <div class="app-cohort-header">
+              <h4>Leadership Essentials</h4>
+              <p>Cohort 1 · 12 learners · Week 3</p>
+            </div>
+            <div class="app-stat-row">
+              <div class="app-stat">
+                <div class="val">67%</div>
+                <div class="lbl">Avg. completion</div>
+              </div>
+              <div class="app-stat">
+                <div class="val">9/12</div>
+                <div class="lbl">Active this week</div>
+              </div>
+            </div>
+            <div class="app-format-breakdown">
+              <div class="app-group-label">Format preference</div>
+              <div class="app-fbar-row">
+                <div class="app-fbar-label">Article</div>
+                <div class="app-fbar-track"><div class="app-fbar-fill" style="width:45%;background:#DA9C59"></div></div>
+                <div class="app-fbar-pct">45%</div>
+              </div>
+              <div class="app-fbar-row">
+                <div class="app-fbar-label">Video</div>
+                <div class="app-fbar-track"><div class="app-fbar-fill" style="width:27%;background:#E88D84"></div></div>
+                <div class="app-fbar-pct">27%</div>
+              </div>
+              <div class="app-fbar-row">
+                <div class="app-fbar-label">Podcast</div>
+                <div class="app-fbar-track"><div class="app-fbar-fill" style="width:18%;background:#4BA5A5"></div></div>
+                <div class="app-fbar-pct">18%</div>
+              </div>
+              <div class="app-fbar-row">
+                <div class="app-fbar-label">AI Chat</div>
+                <div class="app-fbar-track"><div class="app-fbar-fill" style="width:10%;background:#A17E90"></div></div>
+                <div class="app-fbar-pct">10%</div>
+              </div>
+            </div>
+            <div class="app-group-label">Learners</div>
+            <div class="app-learner-list">
+              <div class="app-learner-row">
+                <div class="app-learner-avatar" style="background:#4BA5A5">SM</div>
+                <div class="app-learner-name">Sarah M.</div>
+                <div class="app-learner-status app-learner-status--done">Complete</div>
+              </div>
+              <div class="app-learner-row">
+                <div class="app-learner-avatar" style="background:#DA9C59">JT</div>
+                <div class="app-learner-name">James T.</div>
+                <div class="app-learner-status app-learner-status--prog">Module 3</div>
+              </div>
+              <div class="app-learner-row">
+                <div class="app-learner-avatar" style="background:#A17E90">AR</div>
+                <div class="app-learner-name">Anita R.</div>
+                <div class="app-learner-status app-learner-status--prog">Module 2</div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="step-item">
-          <span class="step-num">02</span>
-          <div>
-            <h3>Shape the experience</h3>
-            <p>Review the AI-generated structure, rearrange modules, add your own commentary, fill gaps, and apply your branding. You stay in full control of the final experience.</p>
+
+        <!-- Steps -->
+        <div class="steps-list">
+          <div class="step-item" data-screen="1" onmouseenter="hiwShow(1)" onmouseleave="hiwResume()">
+            <span class="step-num">01</span>
+            <div>
+              <h3>Bring what you have</h3>
+              <p>Upload slides, articles, a book draft, or a video recording. Paste a course outline or just describe what you want to teach. Camino starts from wherever you are.</p>
+            </div>
+          </div>
+          <div class="step-item" data-screen="2" onmouseenter="hiwShow(2)" onmouseleave="hiwResume()">
+            <span class="step-num">02</span>
+            <div>
+              <h3>Shape the experience</h3>
+              <p>Review the AI-generated structure, rearrange modules, add your own commentary, fill gaps, and apply your branding. You stay in full control of the final experience.</p>
+            </div>
+          </div>
+          <div class="step-item" data-screen="3" onmouseenter="hiwShow(3)" onmouseleave="hiwResume()">
+            <span class="step-num">03</span>
+            <div>
+              <h3>Launch and grow</h3>
+              <p>Share with your first cohort, gather feedback through engagement data, and keep improving. Each version gets better without starting from zero.</p>
+            </div>
           </div>
         </div>
-        <div class="step-item">
-          <span class="step-num">03</span>
-          <div>
-            <h3>Launch and grow</h3>
-            <p>Share with your first cohort, gather feedback through engagement data, and keep improving. Each version gets better without starting from zero.</p>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
+
+  <script>
+    let hiwCurrent = 1;
+    let hiwTimer;
+    function hiwShow(n) { clearInterval(hiwTimer); hiwSetScreen(n); }
+    function hiwSetScreen(n) {
+      hiwCurrent = n;
+      document.querySelectorAll('.app-screen').forEach(s => s.classList.remove('active'));
+      const screen = document.getElementById('hiw-screen-' + n);
+      if (screen) screen.classList.add('active');
+      document.querySelectorAll('.step-item').forEach(s => {
+        s.style.opacity = s.dataset.screen == n ? '1' : '0.45';
+      });
+    }
+    function hiwResume() {
+      document.querySelectorAll('.step-item').forEach(s => s.style.opacity = '1');
+      hiwTimer = setInterval(() => {
+        hiwCurrent = hiwCurrent >= 3 ? 1 : hiwCurrent + 1;
+        hiwSetScreen(hiwCurrent);
+        document.querySelectorAll('.step-item').forEach(s => s.style.opacity = '1');
+      }, 3000);
+    }
+    hiwResume();
+  </script>
 
   <!-- ══ QUOTE ════════════════════════════════════════════ -->
   <section class="section-wrapper">
@@ -416,9 +821,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="home-midfi.html" class="logo">
-            <svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <text x="2" y="24" font-family="Geist, -apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="currentColor">Camino</text>
-            </svg>
+            <span class="logo-text">Camino</span>
           </a>
           <p class="footer-tagline">Empower. Engage. Evolve.</p>
         </div>

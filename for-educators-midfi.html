@@ -54,7 +54,7 @@
     }
     .header-inner { display: flex; align-items: center; width: 100%; }
     .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; color: var(--fg); }
-    .logo svg { height: 22px; width: auto; display: block; }
+    .logo-text { font-family: 'Geist', -apple-system, system-ui, sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.03em; color: var(--fg); }
     nav { display: flex; align-items: center; justify-content: center; gap: 36px; flex: 1; padding: 0 32px; }
     nav a { font-size: 14px; font-weight: 500; color: var(--muted-fg); text-decoration: none; letter-spacing: 0.01em; transition: color 0.15s; }
     nav a:hover { color: var(--fg); }
@@ -167,16 +167,99 @@
     .benefit-card h3 { font-size: 16px; font-weight: 600; color: var(--fg); line-height: 1.3; }
     .benefit-card p { font-size: 14px; line-height: 1.7; color: var(--muted-fg); }
 
-    .steps-list { display: flex; flex-direction: column; gap: 0; max-width: 720px; }
+    /* ─── HOW IT WORKS ────────────────────────────────── */
+    .how-it-works-layout { display: grid; grid-template-columns: 5fr 8fr; gap: 64px; align-items: start; }
+    .steps-list { display: flex; flex-direction: column; gap: 0; }
     .step-item {
       display: grid; grid-template-columns: 48px 1fr; gap: 24px;
       padding: 32px 0; border-bottom: 1px solid var(--border);
+      cursor: default; transition: opacity 0.2s;
     }
     .step-item:first-child { padding-top: 0; }
     .step-item:last-child { border-bottom: none; }
     .step-num { font-size: 13px; font-weight: 700; color: var(--persona-color); letter-spacing: 0.06em; padding-top: 3px; }
     .step-item h3 { font-size: 18px; font-weight: 600; color: var(--fg); margin-bottom: 8px; }
     .step-item p { font-size: 15px; line-height: 1.7; color: var(--muted-fg); }
+
+    /* ─── APP CARD ────────────────────────────────────── */
+    .hiw-app-card {
+      position: sticky; top: 88px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 2px 8px rgba(61,52,46,0.06), 0 12px 40px rgba(61,52,46,0.08);
+    }
+    .app-chrome { display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: var(--card-muted); border-bottom: 1px solid var(--border); }
+    .app-chrome-dots { display: flex; gap: 5px; }
+    .app-chrome-dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+    .app-chrome-title { flex: 1; text-align: center; font-size: 12px; font-weight: 600; color: var(--muted-fg); letter-spacing: 0.04em; }
+    .app-screen { display: none; flex-direction: column; padding: 20px; min-height: 340px; }
+    .app-screen.active { display: flex; }
+
+    /* ── Screen 1: Course builder ── */
+    .app-screen-title { font-size: 13px; font-weight: 700; color: var(--fg); margin-bottom: 2px; }
+    .app-screen-sub { font-size: 11px; color: var(--muted-fg); margin-bottom: 14px; }
+    .app-import-row {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(232,141,132,0.08); border: 1px solid rgba(232,141,132,0.25);
+      border-radius: 8px; padding: 9px 12px; margin-bottom: 14px;
+    }
+    .app-import-icon { width: 26px; height: 26px; border-radius: 6px; background: rgba(232,141,132,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .app-import-info { flex: 1; }
+    .app-import-name { font-size: 12px; font-weight: 600; color: var(--fg); }
+    .app-import-status { font-size: 10px; color: var(--persona-color); font-weight: 600; margin-top: 1px; }
+    .app-group-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-fg); margin-bottom: 8px; }
+    .app-module-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .app-module-row { background: var(--secondary); border-radius: 8px; padding: 9px 12px; display: flex; align-items: center; gap: 8px; }
+    .app-module-num { font-size: 10px; font-weight: 700; color: var(--persona-color); width: 14px; flex-shrink: 0; }
+    .app-module-name { font-size: 12px; font-weight: 600; color: var(--fg); flex: 1; }
+    .app-module-tag { font-size: 10px; color: var(--muted-fg); background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px; }
+    .app-btn-small { background: var(--persona-color); color: #fff; border-radius: 8px; padding: 10px 16px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-align: center; margin-top: auto; }
+
+    /* ── Screen 2: Student roster ── */
+    .app-class-header { margin-bottom: 14px; }
+    .app-class-header h4 { font-size: 14px; font-weight: 600; color: var(--fg); }
+    .app-class-header p { font-size: 11px; color: var(--muted-fg); margin-top: 2px; }
+    .app-class-code {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--secondary); border-radius: 8px; padding: 9px 12px; margin-bottom: 14px;
+    }
+    .app-class-code .lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-fg); }
+    .app-class-code .code { font-size: 14px; font-weight: 700; color: var(--fg); letter-spacing: 0.12em; }
+    .app-class-code .copy { font-size: 10px; font-weight: 600; color: var(--persona-color); }
+    .app-student-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .app-student-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .app-student-row:last-child { border-bottom: none; }
+    .app-avatar { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .app-student-name { font-size: 12px; font-weight: 500; color: var(--fg); flex: 1; }
+    .app-status-pill { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 100px; }
+    .app-status-pill--enrolled { background: rgba(75,165,165,0.12); color: #4BA5A5; }
+    .app-status-pill--pending { background: var(--secondary); color: var(--muted-fg); }
+    .app-invite-btn {
+      border: 1.5px dashed var(--border); border-radius: 8px;
+      padding: 9px 12px; font-size: 12px; color: var(--muted-fg);
+      display: flex; align-items: center; gap: 6px; margin-top: auto;
+    }
+
+    /* ── Screen 3: Admin dashboard (matches /admin/dashboard) ── */
+    .app-stat-row { display: flex; gap: 8px; margin-bottom: 14px; }
+    .app-stat { flex: 1; background: var(--secondary); border-radius: 8px; padding: 10px 12px; }
+    .app-stat .val { font-size: 18px; font-weight: 700; color: var(--fg); line-height: 1; }
+    .app-stat .lbl { font-size: 10px; color: var(--muted-fg); margin-top: 3px; }
+    .app-engagement-table { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+    .app-eng-row { display: flex; align-items: center; gap: 7px; padding: 7px 10px; background: var(--secondary); border-radius: 8px; }
+    .app-eng-avatar { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .app-eng-name { font-size: 11px; font-weight: 500; color: var(--fg); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    /* Progress bar — real color is blue #3b82f6 (from admin/dashboard) */
+    .app-eng-bar-wrap { width: 48px; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+    .app-eng-bar { height: 100%; border-radius: 3px; background: #3b82f6; }
+    .app-eng-pct { font-size: 10px; color: var(--muted-fg); width: 24px; text-align: right; flex-shrink: 0; }
+    /* Engagement badge — real colors: High=green, Medium=yellow, Low=red */
+    .app-eng-badge { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 100px; flex-shrink: 0; }
+    .app-eng-badge--high { background: #dcfce7; color: #166534; }
+    .app-eng-badge--med  { background: #fef3c7; color: #92400e; }
+    .app-eng-badge--low  { background: #fee2e2; color: #991b1b; }
+    /* Deeper learning indicators — matches questionsAsked, videosReplayed, podcastsListened, notesAdded */
+    .app-deeper { display: flex; gap: 6px; font-size: 11px; }
 
     .quote-block {
       background: var(--persona-bg); border-left: 3px solid var(--persona-color);
@@ -219,9 +302,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="home-midfi.html" class="logo">
-        <svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="2" y="24" font-family="Geist, -apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="currentColor">Camino</text>
-        </svg>
+        <span class="logo-text">Camino</span>
       </a>
       <nav>
         <a href="home-midfi.html">home</a>
@@ -368,31 +449,202 @@
         <p class="section-eyebrow">how it works</p>
         <h2>From curriculum to live learning in three steps.</h2>
       </div>
-      <div class="steps-list">
-        <div class="step-item">
-          <span class="step-num">01</span>
-          <div>
-            <h3>Build your course structure</h3>
-            <p>Import your existing materials or start from a brief. Camino generates a structured learning path — modules, sequences, and format options — that you review and refine.</p>
+      <div class="how-it-works-layout">
+
+        <!-- App card -->
+        <div class="hiw-app-card">
+          <div class="app-chrome">
+            <div class="app-chrome-dots"><span></span><span></span><span></span></div>
+            <div class="app-chrome-title">Camino</div>
+          </div>
+
+          <!-- Screen 1: Course structure builder -->
+          <div class="app-screen active" id="hiw-screen-1">
+            <div class="app-screen-title">Introduction to Ethics</div>
+            <div class="app-screen-sub">Generated from your syllabus</div>
+            <div class="app-import-row">
+              <div class="app-import-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E88D84" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <div class="app-import-info">
+                <div class="app-import-name">Ethics_Syllabus_F25.pdf</div>
+                <div class="app-import-status">✓ Processed · 4 modules generated</div>
+              </div>
+            </div>
+            <div class="app-group-label">Course modules</div>
+            <div class="app-module-list">
+              <div class="app-module-row">
+                <div class="app-module-num">1</div>
+                <div class="app-module-name">Moral Frameworks</div>
+                <div class="app-module-tag">3 lessons</div>
+              </div>
+              <div class="app-module-row">
+                <div class="app-module-num">2</div>
+                <div class="app-module-name">Applied Ethics</div>
+                <div class="app-module-tag">4 lessons</div>
+              </div>
+              <div class="app-module-row">
+                <div class="app-module-num">3</div>
+                <div class="app-module-name">Case Studies</div>
+                <div class="app-module-tag">3 lessons</div>
+              </div>
+              <div class="app-module-row">
+                <div class="app-module-num">4</div>
+                <div class="app-module-name">Contemporary Debates</div>
+                <div class="app-module-tag">3 lessons</div>
+              </div>
+            </div>
+            <div class="app-btn-small">Assign to class →</div>
+          </div>
+
+          <!-- Screen 2: Student roster (matches manage-space + cohort LRN code pattern) -->
+          <div class="app-screen" id="hiw-screen-2">
+            <div class="app-class-header">
+              <h4>Introduction to Ethics</h4>
+              <p>Fall 2025 · 24 students enrolled</p>
+            </div>
+            <!-- Real format: LRN-XXXXX learner code from manage-space -->
+            <div class="app-class-code">
+              <div>
+                <div class="lbl">Learner code</div>
+                <div class="code">LRN-4K9M2</div>
+              </div>
+              <div class="copy">Copy ↗</div>
+            </div>
+            <div class="app-group-label">Students</div>
+            <div class="app-student-list">
+              <div class="app-student-row">
+                <div class="app-avatar" style="background:#4BA5A5">AM</div>
+                <div class="app-student-name">Avery M.</div>
+                <div class="app-status-pill app-status-pill--enrolled">Active</div>
+              </div>
+              <div class="app-student-row">
+                <div class="app-avatar" style="background:#DA9C59">JL</div>
+                <div class="app-student-name">James L.</div>
+                <div class="app-status-pill app-status-pill--enrolled">Active</div>
+              </div>
+              <div class="app-student-row">
+                <div class="app-avatar" style="background:#A17E90">SP</div>
+                <div class="app-student-name">Sofia P.</div>
+                <div class="app-status-pill app-status-pill--pending">Pending</div>
+              </div>
+              <div class="app-student-row">
+                <div class="app-avatar" style="background:#E88D84">KR</div>
+                <div class="app-student-name">Kenji R.</div>
+                <div class="app-status-pill app-status-pill--enrolled">Active</div>
+              </div>
+            </div>
+            <div class="app-invite-btn">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add students…
+            </div>
+          </div>
+
+          <!-- Screen 3: Admin dashboard (matches /admin/dashboard real UI) -->
+          <div class="app-screen" id="hiw-screen-3">
+            <!-- Real summary cards: Total Learners, Active, Avg Completion, Total Pathways -->
+            <div class="app-stat-row">
+              <div class="app-stat">
+                <div class="val">24</div>
+                <div class="lbl">Total learners</div>
+              </div>
+              <div class="app-stat">
+                <div class="val">18</div>
+                <div class="lbl">Active (7 days)</div>
+              </div>
+              <div class="app-stat">
+                <div class="val">64%</div>
+                <div class="lbl">Avg. completion</div>
+              </div>
+            </div>
+            <!-- Real learner table: Name, progress bar (blue), engagement badge, deeper learning -->
+            <div class="app-group-label">Learner progress</div>
+            <div class="app-engagement-table">
+              <div class="app-eng-row">
+                <div class="app-eng-avatar" style="background:#4BA5A5">AM</div>
+                <div class="app-eng-name">Avery M.</div>
+                <div class="app-eng-bar-wrap"><div class="app-eng-bar" style="width:90%"></div></div>
+                <div class="app-eng-pct">90%</div>
+                <div class="app-eng-badge app-eng-badge--high">High</div>
+                <div class="app-deeper">💬5 🎧3</div>
+              </div>
+              <div class="app-eng-row">
+                <div class="app-eng-avatar" style="background:#DA9C59">JL</div>
+                <div class="app-eng-name">James L.</div>
+                <div class="app-eng-bar-wrap"><div class="app-eng-bar" style="width:62%"></div></div>
+                <div class="app-eng-pct">62%</div>
+                <div class="app-eng-badge app-eng-badge--med">Med</div>
+                <div class="app-deeper">💬2</div>
+              </div>
+              <div class="app-eng-row">
+                <div class="app-eng-avatar" style="background:#A17E90">SP</div>
+                <div class="app-eng-name">Sofia P.</div>
+                <div class="app-eng-bar-wrap"><div class="app-eng-bar" style="width:38%"></div></div>
+                <div class="app-eng-pct">38%</div>
+                <div class="app-eng-badge app-eng-badge--low">Low</div>
+                <div class="app-deeper">—</div>
+              </div>
+              <div class="app-eng-row">
+                <div class="app-eng-avatar" style="background:#E88D84">KR</div>
+                <div class="app-eng-name">Kenji R.</div>
+                <div class="app-eng-bar-wrap"><div class="app-eng-bar" style="width:75%"></div></div>
+                <div class="app-eng-pct">75%</div>
+                <div class="app-eng-badge app-eng-badge--high">High</div>
+                <div class="app-deeper">💬8 🔄2 📝1</div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="step-item">
-          <span class="step-num">02</span>
-          <div>
-            <h3>Assign to your students</h3>
-            <p>Add your class or cohort and they're in. Each student gets the same curriculum, accessible in their preferred format — no logins to manage, no IT headaches.</p>
+
+        <!-- Steps -->
+        <div class="steps-list">
+          <div class="step-item" data-screen="1" onmouseenter="hiwShow(1)" onmouseleave="hiwResume()">
+            <span class="step-num">01</span>
+            <div>
+              <h3>Build your course structure</h3>
+              <p>Import your existing materials or start from a brief. Camino generates a structured learning path — modules, sequences, and format options — that you review and refine.</p>
+            </div>
+          </div>
+          <div class="step-item" data-screen="2" onmouseenter="hiwShow(2)" onmouseleave="hiwResume()">
+            <span class="step-num">02</span>
+            <div>
+              <h3>Assign to your students</h3>
+              <p>Add your class or cohort and they're in. Each student gets the same curriculum, accessible in their preferred format — no logins to manage, no IT headaches.</p>
+            </div>
+          </div>
+          <div class="step-item" data-screen="3" onmouseenter="hiwShow(3)" onmouseleave="hiwResume()">
+            <span class="step-num">03</span>
+            <div>
+              <h3>Watch them learn</h3>
+              <p>Track engagement across your class. See who's ahead, who needs a nudge, and which topics are generating the most questions. Use the data to teach better, not just test more.</p>
+            </div>
           </div>
         </div>
-        <div class="step-item">
-          <span class="step-num">03</span>
-          <div>
-            <h3>Watch them learn</h3>
-            <p>Track engagement across your class. See who's ahead, who needs a nudge, and which topics are generating the most questions. Use the data to teach better, not just test more.</p>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
+
+  <script>
+    let hiwCurrent = 1, hiwTimer;
+    function hiwShow(n) { clearInterval(hiwTimer); hiwSetScreen(n); }
+    function hiwSetScreen(n) {
+      hiwCurrent = n;
+      document.querySelectorAll('.app-screen').forEach(s => s.classList.remove('active'));
+      const s = document.getElementById('hiw-screen-' + n);
+      if (s) s.classList.add('active');
+      document.querySelectorAll('.step-item').forEach(s => { s.style.opacity = s.dataset.screen == n ? '1' : '0.45'; });
+    }
+    function hiwResume() {
+      document.querySelectorAll('.step-item').forEach(s => s.style.opacity = '1');
+      hiwTimer = setInterval(() => {
+        hiwCurrent = hiwCurrent >= 3 ? 1 : hiwCurrent + 1;
+        hiwSetScreen(hiwCurrent);
+        document.querySelectorAll('.step-item').forEach(s => s.style.opacity = '1');
+      }, 3000);
+    }
+    hiwResume();
+  </script>
 
   <!-- ══ QUOTE ════════════════════════════════════════════ -->
   <section class="section-wrapper--secondary">
@@ -421,9 +673,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="home-midfi.html" class="logo">
-            <svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <text x="2" y="24" font-family="Geist, -apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="currentColor">Camino</text>
-            </svg>
+            <span class="logo-text">Camino</span>
           </a>
           <p class="footer-tagline">Empower. Engage. Evolve.</p>
         </div>

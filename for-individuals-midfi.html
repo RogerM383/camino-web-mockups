@@ -63,7 +63,7 @@
     }
     .header-inner { display: flex; align-items: center; width: 100%; }
     .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; color: var(--fg); }
-    .logo svg { height: 22px; width: auto; display: block; }
+    .logo-text { font-family: 'Geist', -apple-system, system-ui, sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.03em; color: var(--fg); }
     nav { display: flex; align-items: center; justify-content: center; gap: 36px; flex: 1; padding: 0 32px; }
     nav a { font-size: 14px; font-weight: 500; color: var(--muted-fg); text-decoration: none; letter-spacing: 0.01em; transition: color 0.15s; }
     nav a:hover, nav a.active { color: var(--fg); }
@@ -203,11 +203,16 @@
     .benefit-card p { font-size: 14px; line-height: 1.7; color: var(--muted-fg); }
 
     /* ─── HOW IT WORKS ────────────────────────────────── */
+    .how-it-works-layout {
+      display: grid;
+      grid-template-columns: 5fr 8fr;
+      gap: 64px;
+      align-items: start;
+    }
     .steps-list {
       display: flex;
       flex-direction: column;
       gap: 0;
-      max-width: 720px;
     }
     .step-item {
       display: grid;
@@ -215,6 +220,8 @@
       gap: 24px;
       padding: 32px 0;
       border-bottom: 1px solid var(--border);
+      cursor: default;
+      transition: opacity 0.2s;
     }
     .step-item:first-child { padding-top: 0; }
     .step-item:last-child { border-bottom: none; }
@@ -223,9 +230,156 @@
       color: var(--persona-color);
       letter-spacing: 0.06em;
       padding-top: 3px;
+      transition: color 0.2s;
     }
     .step-item h3 { font-size: 18px; font-weight: 600; color: var(--fg); margin-bottom: 8px; }
     .step-item p { font-size: 15px; line-height: 1.7; color: var(--muted-fg); }
+
+    /* ─── APP CARD ────────────────────────────────────── */
+    .hiw-app-card {
+      position: sticky;
+      top: 88px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(61,52,46,0.06), 0 12px 40px rgba(61,52,46,0.08);
+    }
+    .app-chrome {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: var(--card-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .app-chrome-dots { display: flex; gap: 5px; }
+    .app-chrome-dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+    .app-chrome-title { flex: 1; text-align: center; font-size: 12px; font-weight: 600; color: var(--muted-fg); letter-spacing: 0.04em; }
+
+    /* Screens */
+    .app-screen {
+      display: none;
+      flex-direction: column;
+      padding: 24px;
+      min-height: 360px;
+    }
+    .app-screen.active { display: flex; }
+
+    /* Screen 1 — Goal setup */
+    .app-msg { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+    .app-bubble {
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 85%;
+    }
+    .app-bubble--ai {
+      background: var(--secondary);
+      color: var(--fg);
+      border-bottom-left-radius: 4px;
+      align-self: flex-start;
+    }
+    .app-bubble--user {
+      background: var(--persona-color);
+      color: #fff;
+      border-bottom-right-radius: 4px;
+      align-self: flex-end;
+    }
+    .app-suggestions { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+    .app-suggestion-pill {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--fg);
+      background: var(--card);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .app-suggestion-pill span { width: 6px; height: 6px; border-radius: 50%; background: var(--persona-color); flex-shrink: 0; }
+    .app-btn-small {
+      background: var(--persona-color);
+      color: #fff;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    /* Screen 2 — Format picker (matches real LessonTabs) */
+    .app-lesson-header { margin-bottom: 14px; }
+    .app-lesson-header .app-back { font-size: 10px; color: var(--muted-fg); margin-bottom: 4px; letter-spacing: 0.02em; }
+    .app-lesson-header h4 { font-size: 14px; font-weight: 600; color: var(--fg); line-height: 1.3; }
+    .app-lesson-meta { font-size: 11px; color: var(--muted-fg); margin-top: 2px; }
+    /* Tab bar — matches bg-accent/80 border border-accent rounded-lg p-0.5 */
+    .app-format-tabs {
+      display: flex;
+      background: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 3px;
+      gap: 2px;
+      margin-bottom: 16px;
+    }
+    .app-format-tab {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding: 7px 4px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 500;
+      color: rgba(61,52,46,0.6);
+      transition: all 0.15s;
+    }
+    .app-format-tab svg { opacity: 0.7; }
+    .app-format-tab.active {
+      background: var(--secondary);
+      color: var(--fg);
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(61,52,46,0.10);
+      border: 1px solid var(--border);
+    }
+    .app-format-tab.active svg { opacity: 1; }
+    .app-divider { border: none; border-top: 1px solid var(--border); margin: 4px 0 14px; }
+    .app-article-preview { font-size: 12px; line-height: 1.65; color: var(--muted-fg); }
+    .app-article-preview strong { color: var(--fg); font-weight: 600; font-size: 13px; display: block; margin-bottom: 5px; }
+
+    /* Screen 3 — Progress (matches real SectionProgressDots + progress.tsx) */
+    .app-streak-row { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+    .app-streak-badge { background: var(--persona-bg); border-radius: 8px; padding: 7px 11px; font-size: 12px; font-weight: 700; color: var(--persona-color); }
+    .app-streak-label { font-size: 12px; color: var(--muted-fg); }
+    .app-progress-section { margin-bottom: 20px; }
+    .app-progress-label { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: var(--fg); margin-bottom: 8px; }
+    .app-progress-label span { color: var(--muted-fg); font-weight: 400; }
+    /* Matches h-4 rounded-full bg-secondary */
+    .app-progress-bar { height: 10px; background: var(--secondary); border-radius: 100px; overflow: hidden; transition: background 0.2s; }
+    /* Matches bg-primary (#A17E90) transition-all duration-1000 */
+    .app-progress-fill { height: 100%; background: var(--primary); border-radius: 100px; transition: width 1s ease-out; }
+    /* Section progress dots — matches w-3 h-3 rounded-full + state colors */
+    .app-section-dots { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    .app-sdot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: rgba(109,99,87,0.3); /* muted-foreground/50 */
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .app-sdot.done { background: var(--persona-color); } /* bg-pathway-knowledge #da9c59 */
+    .app-sdot.current { background: var(--muted-fg); transform: scale(1.25); } /* bg-muted-foreground scale-125 */
+    .app-section-label { font-size: 10px; color: var(--muted-fg); letter-spacing: 0.04em; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; }
+    .app-next-card { background: var(--secondary); border-radius: 10px; padding: 12px 14px; }
+    .app-next-card .label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-fg); margin-bottom: 4px; }
+    .app-next-card .title { font-size: 13px; font-weight: 600; color: var(--fg); }
+    .app-next-card .meta { font-size: 11px; color: var(--muted-fg); margin-top: 2px; }
 
     /* ─── QUOTE BLOCK ─────────────────────────────────── */
     .quote-block {
@@ -299,9 +453,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="home-midfi.html" class="logo">
-        <svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="2" y="24" font-family="Geist, -apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="currentColor">Camino</text>
-        </svg>
+        <span class="logo-text">Camino</span>
       </a>
       <nav>
         <a href="home-midfi.html">home</a>
@@ -412,31 +564,153 @@
         <p class="section-eyebrow">how it works</p>
         <h2>Three steps to learning that feels right.</h2>
       </div>
-      <div class="steps-list">
-        <div class="step-item">
-          <span class="step-num">01</span>
-          <div>
-            <h3>Tell Camino what you're working on</h3>
-            <p>Share your goal, your background, and how you like to learn. Camino takes it from there — suggesting a path that makes sense for exactly where you are right now.</p>
+      <div class="how-it-works-layout">
+
+        <!-- App card -->
+        <div class="hiw-app-card">
+          <div class="app-chrome">
+            <div class="app-chrome-dots"><span></span><span></span><span></span></div>
+            <div class="app-chrome-title">Camino</div>
+          </div>
+
+          <!-- Screen 1: Goal setup -->
+          <div class="app-screen active" id="hiw-screen-1">
+            <div class="app-msg">
+              <div class="app-bubble app-bubble--ai">Hi! What would you like to learn?</div>
+              <div class="app-bubble app-bubble--user">I want to learn data analysis for my new role.</div>
+              <div class="app-bubble app-bubble--ai">Great start! I've put together a path based on where you are right now:</div>
+            </div>
+            <div class="app-suggestions">
+              <div class="app-suggestion-pill"><span></span>SQL Basics</div>
+              <div class="app-suggestion-pill"><span></span>Data Visualization</div>
+              <div class="app-suggestion-pill"><span></span>Python for Analysis</div>
+            </div>
+            <div class="app-btn-small">Build my path →</div>
+          </div>
+
+          <!-- Screen 2: Format picker (real LessonTabs pattern) -->
+          <div class="app-screen" id="hiw-screen-2">
+            <div class="app-lesson-header">
+              <div class="app-back">← SQL Fundamentals</div>
+              <h4>Introduction to SQL</h4>
+              <div class="app-lesson-meta">Module 1 of 6 · 12 min</div>
+            </div>
+            <!-- Tab bar matching bg-accent/80 border border-accent rounded-lg p-0.5 -->
+            <div class="app-format-tabs">
+              <div class="app-format-tab">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E88D84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Video
+              </div>
+              <div class="app-format-tab">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4BA5A5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+                Podcast
+              </div>
+              <div class="app-format-tab active">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DA9C59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                Article
+              </div>
+              <div class="app-format-tab">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A17E90" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                AI Chat
+              </div>
+            </div>
+            <hr class="app-divider">
+            <div class="app-article-preview">
+              <strong>Introduction to SQL</strong>
+              SQL (Structured Query Language) is the standard language for working with relational databases. In this module you'll write your first queries and understand how data is organized into tables and rows…
+            </div>
+          </div>
+
+          <!-- Screen 3: Progress (real SectionProgressDots + progress.tsx pattern) -->
+          <div class="app-screen" id="hiw-screen-3">
+            <div class="app-streak-row">
+              <div class="app-streak-badge">🔥 4-day streak</div>
+              <div class="app-streak-label">Keep it up!</div>
+            </div>
+            <div class="app-progress-section">
+              <div class="app-progress-label">SQL Fundamentals <span>73%</span></div>
+              <!-- bg-secondary track, bg-primary (#A17E90) fill — matches progress.tsx -->
+              <div class="app-progress-bar"><div class="app-progress-fill" style="width:73%"></div></div>
+            </div>
+            <!-- Section dots — matches SectionProgressDots: done=#da9c59, current=muted scale-125, pending=muted/30 -->
+            <div class="app-section-label">Lesson progress</div>
+            <div class="app-section-dots">
+              <div class="app-sdot done"></div>
+              <div class="app-sdot done"></div>
+              <div class="app-sdot done"></div>
+              <div class="app-sdot current"></div>
+              <div class="app-sdot"></div>
+              <div class="app-sdot"></div>
+              <div class="app-sdot"></div>
+              <div class="app-sdot"></div>
+            </div>
+            <div class="app-next-card">
+              <div class="label">Next up</div>
+              <div class="title">Window Functions in SQL</div>
+              <div class="meta">12 min · Article · Module 4</div>
+            </div>
           </div>
         </div>
-        <div class="step-item">
-          <span class="step-num">02</span>
-          <div>
-            <h3>Pick your format and start</h3>
-            <p>Every lesson is available as video, podcast, article, or AI conversation. Swap between them anytime. Read on Monday, listen on Thursday — it's all there, always.</p>
+
+        <!-- Steps -->
+        <div class="steps-list">
+          <div class="step-item" data-screen="1" onmouseenter="hiwShow(1)" onmouseleave="hiwResume()">
+            <span class="step-num">01</span>
+            <div>
+              <h3>Tell Camino what you're working on</h3>
+              <p>Share your goal, your background, and how you like to learn. Camino takes it from there — suggesting a path that makes sense for exactly where you are right now.</p>
+            </div>
+          </div>
+          <div class="step-item" data-screen="2" onmouseenter="hiwShow(2)" onmouseleave="hiwResume()">
+            <span class="step-num">02</span>
+            <div>
+              <h3>Pick your format and start</h3>
+              <p>Every lesson is available as video, podcast, article, or AI conversation. Swap between them anytime. Read on Monday, listen on Thursday — it's all there, always.</p>
+            </div>
+          </div>
+          <div class="step-item" data-screen="3" onmouseenter="hiwShow(3)" onmouseleave="hiwResume()">
+            <span class="step-num">03</span>
+            <div>
+              <h3>Build momentum at your own pace</h3>
+              <p>Camino remembers where you left off and gently surfaces what's next. No guilt, no rigid deadlines — just a learning habit that actually sticks.</p>
+            </div>
           </div>
         </div>
-        <div class="step-item">
-          <span class="step-num">03</span>
-          <div>
-            <h3>Build momentum at your own pace</h3>
-            <p>Camino remembers where you left off and gently surfaces what's next. No guilt, no rigid deadlines — just a learning habit that actually sticks.</p>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
+
+  <script>
+    let hiwCurrent = 1;
+    let hiwTimer;
+
+    function hiwShow(n) {
+      clearInterval(hiwTimer);
+      hiwSetScreen(n);
+    }
+
+    function hiwSetScreen(n) {
+      hiwCurrent = n;
+      document.querySelectorAll('.app-screen').forEach(s => s.classList.remove('active'));
+      const screen = document.getElementById('hiw-screen-' + n);
+      if (screen) screen.classList.add('active');
+      document.querySelectorAll('.step-item').forEach(s => {
+        s.style.opacity = s.dataset.screen == n ? '1' : '0.45';
+      });
+    }
+
+    function hiwResume() {
+      document.querySelectorAll('.step-item').forEach(s => s.style.opacity = '1');
+      hiwTimer = setInterval(() => {
+        hiwCurrent = hiwCurrent >= 3 ? 1 : hiwCurrent + 1;
+        hiwSetScreen(hiwCurrent);
+        document.querySelectorAll('.step-item').forEach(s => s.style.opacity = '1');
+      }, 3000);
+    }
+
+    hiwResume();
+  </script>
 
   <!-- ══ QUOTE ════════════════════════════════════════════ -->
   <section class="section-wrapper">
@@ -465,9 +739,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="home-midfi.html" class="logo">
-            <svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <text x="2" y="24" font-family="Geist, -apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="currentColor">Camino</text>
-            </svg>
+            <span class="logo-text">Camino</span>
           </a>
           <p class="footer-tagline">Empower. Engage. Evolve.</p>
         </div>

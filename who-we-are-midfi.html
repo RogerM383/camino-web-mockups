@@ -87,11 +87,7 @@
       color: var(--fg);
     }
 
-    .logo svg {
-      height: 22px;
-      width: auto;
-      display: block;
-    }
+    .logo-text { font-family: 'Geist', -apple-system, system-ui, sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.03em; color: var(--fg); }
 
     nav {
       display: flex;
@@ -128,6 +124,16 @@
       background: var(--primary);
       border-radius: 2px;
     }
+
+    .nav-item { position: relative; display: flex; align-items: center; }
+    .nav-dropdown-trigger { font-size: 14px; font-weight: 500; color: var(--muted-fg); letter-spacing: 0.01em; cursor: default; display: flex; align-items: center; gap: 5px; user-select: none; transition: color 0.15s; }
+    .nav-dropdown-trigger::after { content: ''; display: inline-block; width: 0; height: 0; border-left: 3.5px solid transparent; border-right: 3.5px solid transparent; border-top: 4px solid currentColor; opacity: 0.5; margin-top: 1px; }
+    .nav-item:hover .nav-dropdown-trigger { color: var(--fg); }
+    .nav-dropdown-menu { position: absolute; top: 100%; left: 50%; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 6px 6px; min-width: 220px; box-shadow: 0 8px 24px rgba(61,52,46,0.08), 0 2px 6px rgba(61,52,46,0.04); opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(-4px); transition: opacity 0.15s, transform 0.15s; }
+    .nav-item:hover .nav-dropdown-menu { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-dropdown-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 6px; text-decoration: none; color: var(--fg); font-size: 14px; font-weight: 500; font-family: 'Manrope', sans-serif; transition: background 0.12s; }
+    .nav-dropdown-item:hover { background: var(--secondary); }
+    .nav-dropdown-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 
     .btn-login {
       font-size: 13px;
@@ -505,13 +511,32 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="home-midfi.html" class="logo">
-        <svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="2" y="24" font-family="Geist, -apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="currentColor">Camino</text>
-        </svg>
+        <span class="logo-text">Camino</span>
       </a>
       <nav>
         <a href="home-midfi.html">home</a>
         <a href="home-midfi.html#what-we-do">what we do</a>
+        <div class="nav-item">
+          <span class="nav-dropdown-trigger">who's using camino?</span>
+          <div class="nav-dropdown-menu">
+            <a href="for-individuals-midfi.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-dot" style="background:#DA9C59"></span>
+              Individual Learners
+            </a>
+            <a href="for-teams-midfi.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-dot" style="background:#4BA5A5"></span>
+              Organizations & Teams
+            </a>
+            <a href="for-trainers-midfi.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-dot" style="background:#A17E90"></span>
+              Trainers & Consultants
+            </a>
+            <a href="for-educators-midfi.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-dot" style="background:#E88D84"></span>
+              Educators & Students
+            </a>
+          </div>
+        </div>
         <a href="#" class="active">who we are</a>
         <a href="connect-midfi.html">connect</a>
       </nav>
@@ -565,13 +590,13 @@
 
         <p>Camino exists to reimagine what learning can be — not a transaction, but a living experience. Because when learning comes alive, it doesn't just change what you know. It changes what you believe is possible.</p>
 
-        <div class="founder-sig">
+        <!-- <div class="founder-sig">
           <div class="founder-avatar">👤</div>
           <div class="founder-info">
             <span class="founder-name">Scott Milrad</span>
             <span class="founder-role">Founder, Camino Learning</span>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
@@ -633,9 +658,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="home-midfi.html" class="logo">
-            <svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <text x="2" y="24" font-family="Geist, -apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="currentColor">Camino</text>
-            </svg>
+            <span class="logo-text">Camino</span>
           </a>
           <p class="footer-tagline">Empower. Engage. Evolve.</p>
         </div>

@@ -54,7 +54,7 @@
     }
     .header-inner { display: flex; align-items: center; width: 100%; }
     .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; color: var(--fg); }
-    .logo svg { height: 22px; width: auto; display: block; }
+    .logo-text { font-family: 'Geist', -apple-system, system-ui, sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.03em; color: var(--fg); }
     nav { display: flex; align-items: center; justify-content: center; gap: 36px; flex: 1; padding: 0 32px; }
     nav a { font-size: 14px; font-weight: 500; color: var(--muted-fg); text-decoration: none; letter-spacing: 0.01em; transition: color 0.15s; }
     nav a:hover { color: var(--fg); }
@@ -164,6 +164,85 @@
     }
     .vis-placeholder { font-size: 12px; font-weight: 500; color: var(--muted-fg); letter-spacing: 0.04em; text-transform: uppercase; }
 
+    /* ─── USE CASE MINI UIs ───────────────────────────────── */
+    .use-case-visual { padding: 16px; overflow: hidden; align-items: flex-start; }
+
+    /* — 1. Onboarding: PathwayCard grid (faithful to PathwayCard.tsx) — */
+    .uc-pw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
+    .uc-pw-card {
+      /* rounded-t-3xl (24px) + rounded-b-[2.5rem] (40px) — real shape */
+      border-radius: 24px 24px 40px 40px;
+      overflow: hidden;
+      background: var(--card);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+      display: flex; flex-direction: column;
+    }
+    .uc-pw-card:hover { transform: translateY(-3px) scale(1.02); }
+    /* Thumbnail — aspect-4/3 abbreviated for mini context */
+    .uc-pw-thumb {
+      height: 96px; position: relative; overflow: hidden; flex-shrink: 0;
+    }
+    /* Emoji centered in thumb */
+    .uc-pw-emoji {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px; z-index: 1;
+    }
+    /* Badge top-left — bg-blue-500/90 backdrop-blur-sm rounded-full (real) */
+    .uc-pw-badge {
+      position: absolute; top: 8px; left: 8px; z-index: 2;
+      background: rgba(59,130,246,0.90);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      color: #fff; font-size: 9px; font-weight: 600;
+      padding: 3px 8px; border-radius: 100px;
+    }
+    .uc-pw-badge--amber { background: rgba(245,158,11,0.90); } /* amber-500/90 */
+    /* Pin button top-right — bg-white/90 backdrop-blur-sm rounded-full (real) */
+    .uc-pw-pin {
+      position: absolute; top: 8px; right: 8px; z-index: 2;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(255,255,255,0.90);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* Content area — p-4 (real) */
+    .uc-pw-content { padding: 12px 12px 14px; flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    /* font-semibold text-foreground text-sm line-clamp-2 (real) */
+    .uc-pw-title { font-size: 11px; font-weight: 600; color: var(--fg); line-height: 1.35; }
+    /* text-xs text-muted-foreground line-clamp-1 (real) */
+    .uc-pw-sub { font-size: 10px; color: var(--muted-fg); margin-top: 1px; }
+
+    /* — 2. Compliance dashboard — */
+    .uc-dashboard { width: 100%; }
+    .uc-kpi-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-bottom: 10px; }
+    .uc-kpi { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; text-align: center; }
+    .uc-kpi-value { font-size: 14px; font-weight: 600; color: var(--fg); line-height: 1; }
+    .uc-kpi-label { font-size: 8.5px; color: var(--muted-fg); margin-top: 2px; }
+    .uc-table { width: 100%; border-collapse: collapse; }
+    .uc-tr { display: grid; grid-template-columns: 80px 1fr 36px; gap: 8px; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--border); }
+    .uc-tr:last-child { border-bottom: none; }
+    .uc-learner { font-size: 10px; font-weight: 500; color: var(--fg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .uc-bar-wrap { background: var(--border); border-radius: 4px; height: 5px; }
+    /* Real admin/dashboard: progress bars are blue #3b82f6 */
+    .uc-bar-fill { height: 5px; border-radius: 4px; background: #3b82f6; }
+    .uc-badge { font-size: 8.5px; font-weight: 600; padding: 2px 5px; border-radius: 4px; text-align: center; }
+    /* Real admin/dashboard badge colors: green/yellow/red */
+    .uc-badge--high { background: #dcfce7; color: #166534; }
+    .uc-badge--med  { background: #fef3c7; color: #92400e; }
+    .uc-badge--low  { background: #fee2e2; color: #991b1b; }
+
+    /* — 3. Skills path builder — */
+    .uc-skills { width: 100%; }
+    .uc-skill-tabs { display: flex; gap: 4px; margin-bottom: 10px; flex-wrap: wrap; }
+    .uc-skill-tab { font-size: 9.5px; font-weight: 500; padding: 3px 9px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted-fg); cursor: default; display: flex; align-items: center; gap: 4px; }
+    .uc-skill-tab--active { background: var(--primary); border-color: var(--primary); color: white; }
+    .uc-skill-tab-badge { background: rgba(255,255,255,0.3); border-radius: 10px; padding: 0 4px; font-size: 8px; }
+    .uc-skill-cloud { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+    .uc-skill-pill { font-size: 10px; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted-fg); background: var(--card); }
+    .uc-skill-pill--on { background: rgba(161,126,144,0.12); border-color: var(--primary); color: var(--primary); font-weight: 500; }
+    .uc-skill-cta { font-size: 10px; font-weight: 600; color: white; background: var(--primary); padding: 5px 12px; border-radius: 6px; display: inline-block; }
+
     .steps-list { display: flex; flex-direction: column; gap: 0; max-width: 720px; }
     .step-item {
       display: grid; grid-template-columns: 48px 1fr; gap: 24px;
@@ -216,9 +295,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="home-midfi.html" class="logo">
-        <svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="2" y="24" font-family="Geist, -apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="currentColor">Camino</text>
-        </svg>
+        <span class="logo-text">Camino</span>
       </a>
       <nav>
         <a href="home-midfi.html">home</a>
@@ -334,21 +411,91 @@
           <h3>Onboarding that sticks</h3>
           <p>Give new hires a learning experience from day one that's engaging, self-paced, and reflects your culture. Reduce time-to-productivity and make a great first impression — without the 40-tab Google Drive.</p>
         </div>
-        <div class="use-case-visual"><p class="vis-placeholder">Onboarding path preview</p></div>
+        <div class="use-case-visual" style="align-items:center;">
+          <!-- Two PathwayCards — faithful to PathwayCard.tsx shape, badges, pin button -->
+          <div class="uc-pw-grid">
+
+            <!-- Card 1: Career pathway (teal #4ba5a5) — In Progress -->
+            <div class="uc-pw-card">
+              <div class="uc-pw-thumb" style="background: linear-gradient(135deg,#4ba5a5,#3a8a8a);">
+                <div class="uc-pw-emoji">🚀</div>
+                <!-- blue-500/90 backdrop-blur-sm rounded-full badge (real) -->
+                <div class="uc-pw-badge">In Progress</div>
+                <!-- white/90 backdrop-blur-sm rounded-full pin (real) -->
+                <div class="uc-pw-pin">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3A2E24" stroke-width="2.5" stroke-linecap="round"><path d="M12 17v5M8 3h8l-1 6-2 1-1 4H10l-1-4-2-1z"/></svg>
+                </div>
+              </div>
+              <div class="uc-pw-content">
+                <div class="uc-pw-title">New Employee Onboarding</div>
+                <div class="uc-pw-sub">5 courses · 42% complete</div>
+              </div>
+            </div>
+
+            <!-- Card 2: Knowledge pathway (orange #da9c59) — New -->
+            <div class="uc-pw-card">
+              <div class="uc-pw-thumb" style="background: linear-gradient(135deg,#da9c59,#c4883f);">
+                <div class="uc-pw-emoji">📚</div>
+                <!-- amber-500/90 badge for "New" (real Draft badge style) -->
+                <div class="uc-pw-badge uc-pw-badge--amber">New</div>
+                <div class="uc-pw-pin">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3A2E24" stroke-width="2.5" stroke-linecap="round"><path d="M12 17v5M8 3h8l-1 6-2 1-1 4H10l-1-4-2-1z"/></svg>
+                </div>
+              </div>
+              <div class="uc-pw-content">
+                <div class="uc-pw-title">Company Culture & Values</div>
+                <div class="uc-pw-sub">3 courses · Not started</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
       <div class="use-case-row reverse">
         <div class="use-case-text">
           <h3>Compliance without the pain</h3>
           <p>Turn mandatory training into something people actually complete — on time, without reminders. Camino makes compliance engaging by letting learners choose how they consume it.</p>
         </div>
-        <div class="use-case-visual"><p class="vis-placeholder">Compliance dashboard</p></div>
+        <div class="use-case-visual">
+          <div class="uc-dashboard">
+            <div class="uc-kpi-row">
+              <div class="uc-kpi"><div class="uc-kpi-value">48</div><div class="uc-kpi-label">Learners</div></div>
+              <div class="uc-kpi"><div class="uc-kpi-value">31</div><div class="uc-kpi-label">Active</div></div>
+              <div class="uc-kpi"><div class="uc-kpi-value">74%</div><div class="uc-kpi-label">Avg. Complete</div></div>
+              <div class="uc-kpi"><div class="uc-kpi-value">5</div><div class="uc-kpi-label">Pathways</div></div>
+            </div>
+            <div class="uc-tr"><div class="uc-learner">Sarah M.</div><div class="uc-bar-wrap"><div class="uc-bar-fill" style="width:88%"></div></div><div class="uc-badge uc-badge--high">High</div></div>
+            <div class="uc-tr"><div class="uc-learner">James T.</div><div class="uc-bar-wrap"><div class="uc-bar-fill" style="width:62%"></div></div><div class="uc-badge uc-badge--med">Med</div></div>
+            <div class="uc-tr"><div class="uc-learner">Ana R.</div><div class="uc-bar-wrap"><div class="uc-bar-fill" style="width:35%"></div></div><div class="uc-badge uc-badge--low">Low</div></div>
+            <div class="uc-tr"><div class="uc-learner">Marcus L.</div><div class="uc-bar-wrap"><div class="uc-bar-fill" style="width:91%"></div></div><div class="uc-badge uc-badge--high">High</div></div>
+          </div>
+        </div>
       </div>
       <div class="use-case-row">
         <div class="use-case-text">
           <h3>Skill development at scale</h3>
           <p>Build role-specific learning paths that grow with your people. Whether it's leadership development, technical upskilling, or soft skills — Camino delivers it in a format every learner can use.</p>
         </div>
-        <div class="use-case-visual"><p class="vis-placeholder">Skills path builder</p></div>
+        <div class="use-case-visual">
+          <div class="uc-skills">
+            <div class="uc-skill-tabs">
+              <div class="uc-skill-tab uc-skill-tab--active">Communicate <span class="uc-skill-tab-badge">3</span></div>
+              <div class="uc-skill-tab">Think</div>
+              <div class="uc-skill-tab">Work Together</div>
+              <div class="uc-skill-tab">Grow</div>
+            </div>
+            <div class="uc-skill-cloud">
+              <div class="uc-skill-pill uc-skill-pill--on">Storytelling</div>
+              <div class="uc-skill-pill uc-skill-pill--on">Active Listening</div>
+              <div class="uc-skill-pill">Negotiation</div>
+              <div class="uc-skill-pill uc-skill-pill--on">Feedback</div>
+              <div class="uc-skill-pill">Persuasion</div>
+              <div class="uc-skill-pill">Presentation</div>
+              <div class="uc-skill-pill">Conflict Resolution</div>
+            </div>
+            <div class="uc-skill-cta">Generate Path → 3 skills selected</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -413,9 +560,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="home-midfi.html" class="logo">
-            <svg width="96" height="32" viewBox="0 0 96 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <text x="2" y="24" font-family="Geist, -apple-system, system-ui, sans-serif" font-size="26" font-weight="500" fill="currentColor">Camino</text>
-            </svg>
+            <span class="logo-text">Camino</span>
           </a>
           <p class="footer-tagline">Empower. Engage. Evolve.</p>
         </div>
